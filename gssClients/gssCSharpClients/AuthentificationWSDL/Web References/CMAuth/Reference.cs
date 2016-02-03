@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace AuthentificationWSDL.CFAuth {
+namespace AuthentificationWSDL.CMAuth {
     using System;
     using System.Web.Services;
     using System.Diagnostics;
@@ -29,23 +29,23 @@ namespace AuthentificationWSDL.CFAuth {
     [System.Web.Services.WebServiceBindingAttribute(Name="AuthManagerPortBinding", Namespace="http://authmanager.sintef.no/")]
     public partial class AuthManager : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback validateSessionTokenOperationCompleted;
+        private System.Threading.SendOrPostCallback getEndpointOperationCompleted;
         
         private System.Threading.SendOrPostCallback getProjectOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getSessionTokenOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback validateSessionTokenOperationCompleted;
         
         private System.Threading.SendOrPostCallback getRolesOperationCompleted;
         
         private System.Threading.SendOrPostCallback getUsernameOperationCompleted;
         
-        private System.Threading.SendOrPostCallback getEndpointOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback getSessionTokenOperationCompleted;
-        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
         public AuthManager() {
-            this.Url = global::AuthentificationWSDL.Properties.Settings.Default.AuthentificationWSDL2_CFAuth_AuthManager;
+            this.Url = global::AuthentificationWSDL.Properties.Settings.Default.AuthentificationWSDL_CMAuth_AuthManager;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
@@ -80,10 +80,16 @@ namespace AuthentificationWSDL.CFAuth {
         }
         
         /// <remarks/>
-        public event validateSessionTokenCompletedEventHandler validateSessionTokenCompleted;
+        public event getEndpointCompletedEventHandler getEndpointCompleted;
         
         /// <remarks/>
         public event getProjectCompletedEventHandler getProjectCompleted;
+        
+        /// <remarks/>
+        public event getSessionTokenCompletedEventHandler getSessionTokenCompleted;
+        
+        /// <remarks/>
+        public event validateSessionTokenCompletedEventHandler validateSessionTokenCompleted;
         
         /// <remarks/>
         public event getRolesCompletedEventHandler getRolesCompleted;
@@ -92,38 +98,34 @@ namespace AuthentificationWSDL.CFAuth {
         public event getUsernameCompletedEventHandler getUsernameCompleted;
         
         /// <remarks/>
-        public event getEndpointCompletedEventHandler getEndpointCompleted;
-        
-        /// <remarks/>
-        public event getSessionTokenCompletedEventHandler getSessionTokenCompleted;
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://authmanager.sintef.no/", ResponseNamespace="http://authmanager.sintef.no/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public bool validateSessionToken(string sessionToken) {
-            object[] results = this.Invoke("validateSessionToken", new object[] {
-                        sessionToken});
-            return ((bool)(results[0]));
+        public string getEndpoint(string sessionToken, string component) {
+            object[] results = this.Invoke("getEndpoint", new object[] {
+                        sessionToken,
+                        component});
+            return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void validateSessionTokenAsync(string sessionToken) {
-            this.validateSessionTokenAsync(sessionToken, null);
+        public void getEndpointAsync(string sessionToken, string component) {
+            this.getEndpointAsync(sessionToken, component, null);
         }
         
         /// <remarks/>
-        public void validateSessionTokenAsync(string sessionToken, object userState) {
-            if ((this.validateSessionTokenOperationCompleted == null)) {
-                this.validateSessionTokenOperationCompleted = new System.Threading.SendOrPostCallback(this.OnvalidateSessionTokenOperationCompleted);
+        public void getEndpointAsync(string sessionToken, string component, object userState) {
+            if ((this.getEndpointOperationCompleted == null)) {
+                this.getEndpointOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetEndpointOperationCompleted);
             }
-            this.InvokeAsync("validateSessionToken", new object[] {
-                        sessionToken}, this.validateSessionTokenOperationCompleted, userState);
+            this.InvokeAsync("getEndpoint", new object[] {
+                        sessionToken,
+                        component}, this.getEndpointOperationCompleted, userState);
         }
         
-        private void OnvalidateSessionTokenOperationCompleted(object arg) {
-            if ((this.validateSessionTokenCompleted != null)) {
+        private void OngetEndpointOperationCompleted(object arg) {
+            if ((this.getEndpointCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.validateSessionTokenCompleted(this, new validateSessionTokenCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.getEndpointCompleted(this, new getEndpointCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -154,6 +156,70 @@ namespace AuthentificationWSDL.CFAuth {
             if ((this.getProjectCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getProjectCompleted(this, new getProjectCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://authmanager.sintef.no/", ResponseNamespace="http://authmanager.sintef.no/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string getSessionToken(string username, string password, string project) {
+            object[] results = this.Invoke("getSessionToken", new object[] {
+                        username,
+                        password,
+                        project});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getSessionTokenAsync(string username, string password, string project) {
+            this.getSessionTokenAsync(username, password, project, null);
+        }
+        
+        /// <remarks/>
+        public void getSessionTokenAsync(string username, string password, string project, object userState) {
+            if ((this.getSessionTokenOperationCompleted == null)) {
+                this.getSessionTokenOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetSessionTokenOperationCompleted);
+            }
+            this.InvokeAsync("getSessionToken", new object[] {
+                        username,
+                        password,
+                        project}, this.getSessionTokenOperationCompleted, userState);
+        }
+        
+        private void OngetSessionTokenOperationCompleted(object arg) {
+            if ((this.getSessionTokenCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getSessionTokenCompleted(this, new getSessionTokenCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://authmanager.sintef.no/", ResponseNamespace="http://authmanager.sintef.no/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool validateSessionToken(string sessionToken) {
+            object[] results = this.Invoke("validateSessionToken", new object[] {
+                        sessionToken});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void validateSessionTokenAsync(string sessionToken) {
+            this.validateSessionTokenAsync(sessionToken, null);
+        }
+        
+        /// <remarks/>
+        public void validateSessionTokenAsync(string sessionToken, object userState) {
+            if ((this.validateSessionTokenOperationCompleted == null)) {
+                this.validateSessionTokenOperationCompleted = new System.Threading.SendOrPostCallback(this.OnvalidateSessionTokenOperationCompleted);
+            }
+            this.InvokeAsync("validateSessionToken", new object[] {
+                        sessionToken}, this.validateSessionTokenOperationCompleted, userState);
+        }
+        
+        private void OnvalidateSessionTokenOperationCompleted(object arg) {
+            if ((this.validateSessionTokenCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.validateSessionTokenCompleted(this, new validateSessionTokenCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -218,72 +284,6 @@ namespace AuthentificationWSDL.CFAuth {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://authmanager.sintef.no/", ResponseNamespace="http://authmanager.sintef.no/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string getEndpoint(string sessionToken, string component) {
-            object[] results = this.Invoke("getEndpoint", new object[] {
-                        sessionToken,
-                        component});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void getEndpointAsync(string sessionToken, string component) {
-            this.getEndpointAsync(sessionToken, component, null);
-        }
-        
-        /// <remarks/>
-        public void getEndpointAsync(string sessionToken, string component, object userState) {
-            if ((this.getEndpointOperationCompleted == null)) {
-                this.getEndpointOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetEndpointOperationCompleted);
-            }
-            this.InvokeAsync("getEndpoint", new object[] {
-                        sessionToken,
-                        component}, this.getEndpointOperationCompleted, userState);
-        }
-        
-        private void OngetEndpointOperationCompleted(object arg) {
-            if ((this.getEndpointCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getEndpointCompleted(this, new getEndpointCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://authmanager.sintef.no/", ResponseNamespace="http://authmanager.sintef.no/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string getSessionToken(string username, string password, string project) {
-            object[] results = this.Invoke("getSessionToken", new object[] {
-                        username,
-                        password,
-                        project});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void getSessionTokenAsync(string username, string password, string project) {
-            this.getSessionTokenAsync(username, password, project, null);
-        }
-        
-        /// <remarks/>
-        public void getSessionTokenAsync(string username, string password, string project, object userState) {
-            if ((this.getSessionTokenOperationCompleted == null)) {
-                this.getSessionTokenOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetSessionTokenOperationCompleted);
-            }
-            this.InvokeAsync("getSessionToken", new object[] {
-                        username,
-                        password,
-                        project}, this.getSessionTokenOperationCompleted, userState);
-        }
-        
-        private void OngetSessionTokenOperationCompleted(object arg) {
-            if ((this.getSessionTokenCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getSessionTokenCompleted(this, new getSessionTokenCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -304,26 +304,26 @@ namespace AuthentificationWSDL.CFAuth {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
-    public delegate void validateSessionTokenCompletedEventHandler(object sender, validateSessionTokenCompletedEventArgs e);
+    public delegate void getEndpointCompletedEventHandler(object sender, getEndpointCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class validateSessionTokenCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class getEndpointCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal validateSessionTokenCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal getEndpointCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
         /// <remarks/>
-        public bool Result {
+        public string Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
+                return ((string)(this.results[0]));
             }
         }
     }
@@ -350,6 +350,58 @@ namespace AuthentificationWSDL.CFAuth {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    public delegate void getSessionTokenCompletedEventHandler(object sender, getSessionTokenCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getSessionTokenCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getSessionTokenCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    public delegate void validateSessionTokenCompletedEventHandler(object sender, validateSessionTokenCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class validateSessionTokenCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal validateSessionTokenCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
             }
         }
     }
@@ -393,58 +445,6 @@ namespace AuthentificationWSDL.CFAuth {
         private object[] results;
         
         internal getUsernameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
-    public delegate void getEndpointCompletedEventHandler(object sender, getEndpointCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getEndpointCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal getEndpointCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
-    public delegate void getSessionTokenCompletedEventHandler(object sender, getSessionTokenCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.81.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getSessionTokenCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal getSessionTokenCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

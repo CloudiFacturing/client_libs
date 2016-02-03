@@ -2,14 +2,14 @@
 <definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://authmanager.sintef.no/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="AuthManager" targetNamespace="http://authmanager.sintef.no/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <xsd:schema>
-      <xsd:import schemaLocation="https://api.eu-cloudflow.eu:443/sintef/authManager/AuthManager?xsd=1" namespace="http://authmanager.sintef.no/" />
+      <xsd:import schemaLocation="https://api.caxman.eu:443/sintef/infrastructure/authManager/AuthManager?xsd=1" namespace="http://authmanager.sintef.no/" />
     </xsd:schema>
   </types>
-  <message name="validateSessionToken">
-    <part name="parameters" element="tns:validateSessionToken" />
+  <message name="getEndpoint">
+    <part name="parameters" element="tns:getEndpoint" />
   </message>
-  <message name="validateSessionTokenResponse">
-    <part name="parameters" element="tns:validateSessionTokenResponse" />
+  <message name="getEndpointResponse">
+    <part name="parameters" element="tns:getEndpointResponse" />
   </message>
   <message name="SOAPException">
     <part name="fault" element="tns:SOAPException" />
@@ -19,6 +19,18 @@
   </message>
   <message name="getProjectResponse">
     <part name="parameters" element="tns:getProjectResponse" />
+  </message>
+  <message name="getSessionToken">
+    <part name="parameters" element="tns:getSessionToken" />
+  </message>
+  <message name="getSessionTokenResponse">
+    <part name="parameters" element="tns:getSessionTokenResponse" />
+  </message>
+  <message name="validateSessionToken">
+    <part name="parameters" element="tns:validateSessionToken" />
+  </message>
+  <message name="validateSessionTokenResponse">
+    <part name="parameters" element="tns:validateSessionTokenResponse" />
   </message>
   <message name="getRoles">
     <part name="parameters" element="tns:getRoles" />
@@ -32,28 +44,26 @@
   <message name="getUsernameResponse">
     <part name="parameters" element="tns:getUsernameResponse" />
   </message>
-  <message name="getEndpoint">
-    <part name="parameters" element="tns:getEndpoint" />
-  </message>
-  <message name="getEndpointResponse">
-    <part name="parameters" element="tns:getEndpointResponse" />
-  </message>
-  <message name="getSessionToken">
-    <part name="parameters" element="tns:getSessionToken" />
-  </message>
-  <message name="getSessionTokenResponse">
-    <part name="parameters" element="tns:getSessionTokenResponse" />
-  </message>
   <portType name="AuthManager">
-    <operation name="validateSessionToken">
-      <input wsam:Action="http://authmanager.sintef.no/AuthManager/validateSessionTokenRequest" message="tns:validateSessionToken" />
-      <output wsam:Action="http://authmanager.sintef.no/AuthManager/validateSessionTokenResponse" message="tns:validateSessionTokenResponse" />
-      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/validateSessionToken/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
+    <operation name="getEndpoint">
+      <input wsam:Action="http://authmanager.sintef.no/AuthManager/getEndpointRequest" message="tns:getEndpoint" />
+      <output wsam:Action="http://authmanager.sintef.no/AuthManager/getEndpointResponse" message="tns:getEndpointResponse" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getEndpoint/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
     </operation>
     <operation name="getProject">
       <input wsam:Action="http://authmanager.sintef.no/AuthManager/getProjectRequest" message="tns:getProject" />
       <output wsam:Action="http://authmanager.sintef.no/AuthManager/getProjectResponse" message="tns:getProjectResponse" />
       <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getProject/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
+    </operation>
+    <operation name="getSessionToken">
+      <input wsam:Action="http://authmanager.sintef.no/AuthManager/getSessionTokenRequest" message="tns:getSessionToken" />
+      <output wsam:Action="http://authmanager.sintef.no/AuthManager/getSessionTokenResponse" message="tns:getSessionTokenResponse" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getSessionToken/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
+    </operation>
+    <operation name="validateSessionToken">
+      <input wsam:Action="http://authmanager.sintef.no/AuthManager/validateSessionTokenRequest" message="tns:validateSessionToken" />
+      <output wsam:Action="http://authmanager.sintef.no/AuthManager/validateSessionTokenResponse" message="tns:validateSessionTokenResponse" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/validateSessionToken/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
     </operation>
     <operation name="getRoles">
       <input wsam:Action="http://authmanager.sintef.no/AuthManager/getRolesRequest" message="tns:getRoles" />
@@ -65,20 +75,10 @@
       <output wsam:Action="http://authmanager.sintef.no/AuthManager/getUsernameResponse" message="tns:getUsernameResponse" />
       <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getUsername/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
     </operation>
-    <operation name="getEndpoint">
-      <input wsam:Action="http://authmanager.sintef.no/AuthManager/getEndpointRequest" message="tns:getEndpoint" />
-      <output wsam:Action="http://authmanager.sintef.no/AuthManager/getEndpointResponse" message="tns:getEndpointResponse" />
-      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getEndpoint/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
-    </operation>
-    <operation name="getSessionToken">
-      <input wsam:Action="http://authmanager.sintef.no/AuthManager/getSessionTokenRequest" message="tns:getSessionToken" />
-      <output wsam:Action="http://authmanager.sintef.no/AuthManager/getSessionTokenResponse" message="tns:getSessionTokenResponse" />
-      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getSessionToken/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
-    </operation>
   </portType>
   <binding name="AuthManagerPortBinding" type="tns:AuthManager">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="validateSessionToken">
+    <operation name="getEndpoint">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -91,6 +91,30 @@
       </fault>
     </operation>
     <operation name="getProject">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="SOAPException">
+        <soap:fault use="literal" name="SOAPException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getSessionToken">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="SOAPException">
+        <soap:fault use="literal" name="SOAPException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="validateSessionToken">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -115,30 +139,6 @@
       </fault>
     </operation>
     <operation name="getUsername">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-      <fault name="SOAPException">
-        <soap:fault use="literal" name="SOAPException" namespace="" />
-      </fault>
-    </operation>
-    <operation name="getEndpoint">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-      <fault name="SOAPException">
-        <soap:fault use="literal" name="SOAPException" namespace="" />
-      </fault>
-    </operation>
-    <operation name="getSessionToken">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -153,7 +153,7 @@
   </binding>
   <service name="AuthManager">
     <port name="AuthManagerPort" binding="tns:AuthManagerPortBinding">
-      <soap:address location="https://api.eu-cloudflow.eu:443/sintef/authManager/AuthManager" />
+      <soap:address location="https://api.caxman.eu:443/sintef/infrastructure/authManager/AuthManager" />
     </port>
   </service>
 </definitions>

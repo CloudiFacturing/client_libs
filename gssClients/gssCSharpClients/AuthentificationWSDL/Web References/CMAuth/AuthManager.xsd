@@ -29,12 +29,12 @@
       <xs:element minOccurs="0" name="message" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="getUsername">
+  <xs:complexType name="getProject">
     <xs:sequence>
       <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="getUsernameResponse">
+  <xs:complexType name="getProjectResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:string" />
     </xs:sequence>
@@ -49,24 +49,12 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="getProject">
+  <xs:complexType name="getUsername">
     <xs:sequence>
       <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="getProjectResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="getSessionToken">
-    <xs:sequence>
-      <xs:element minOccurs="0" form="qualified" name="username" type="xs:string" />
-      <xs:element minOccurs="0" form="qualified" name="password" type="xs:string" />
-      <xs:element minOccurs="0" form="qualified" name="project" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="getSessionTokenResponse">
+  <xs:complexType name="getUsernameResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:string" />
     </xs:sequence>
@@ -79,6 +67,18 @@
   <xs:complexType name="validateSessionTokenResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getSessionToken">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="username" type="xs:string" />
+      <xs:element minOccurs="0" form="qualified" name="password" type="xs:string" />
+      <xs:element minOccurs="0" form="qualified" name="project" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getSessionTokenResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
