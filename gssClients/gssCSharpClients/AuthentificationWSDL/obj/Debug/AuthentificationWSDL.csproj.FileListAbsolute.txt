@@ -1,0 +1,5 @@
+C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\AuthentificationWSDL2\bin\Debug\AuthentificationWSDL.dll.config
+C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\AuthentificationWSDL2\bin\Debug\AuthentificationWSDL.dll
+C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\AuthentificationWSDL2\bin\Debug\AuthentificationWSDL.pdb
+C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\AuthentificationWSDL2\obj\Debug\AuthentificationWSDL.dll
+C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\AuthentificationWSDL2\obj\Debug\AuthentificationWSDL.pdb

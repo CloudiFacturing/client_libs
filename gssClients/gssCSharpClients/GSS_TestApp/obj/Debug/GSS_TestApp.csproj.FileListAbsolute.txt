@@ -1,0 +1,12 @@
+c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\GSS_TestApp\bin\Debug\GSS_TestApp.exe.config
+c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\GSS_TestApp\bin\Debug\GSS_TestApp.exe
+c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\GSS_TestApp\bin\Debug\GSS_TestApp.pdb
+c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\GSS_TestApp\bin\Debug\GssInteropClass.dll
+c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\GSS_TestApp\bin\Debug\GssInteropClass.pdb
+c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\GSS_TestApp\obj\Debug\GSS_TestApp.csprojResolveAssemblyReference.cache
+c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\GSS_TestApp\obj\Debug\GSS_TestApp.exe
+c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\GSS_TestApp\obj\Debug\GSS_TestApp.pdb
+C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\GSS_TestApp\bin\Debug\AuthentificationWR.dll
+C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\GSS_TestApp\bin\Debug\AuthentificationWR.pdb
+C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\GSS_TestApp\bin\Debug\AuthentificationWSDL.dll
+C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\GSS_TestApp\bin\Debug\AuthentificationWSDL.pdb

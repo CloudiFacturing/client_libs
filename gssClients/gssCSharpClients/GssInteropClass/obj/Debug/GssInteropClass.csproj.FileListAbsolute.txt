@@ -1,0 +1,8 @@
+c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\GssInteropClass\obj\Debug\GssInteropClass.csprojResolveAssemblyReference.cache
+c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\GssInteropClass\bin\Debug\GssInteropClass.dll.config
+c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\GssInteropClass\bin\Debug\GssInteropClass.dll
+c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\GssInteropClass\bin\Debug\GssInteropClass.pdb
+c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\GssInteropClass\obj\Debug\GssInteropClass.dll
+c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\GssInteropClass\obj\Debug\GssInteropClass.pdb
+C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\GssInteropClass\bin\Debug\AuthentificationWR.dll
+C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\GssInteropClass\bin\Debug\AuthentificationWR.pdb
