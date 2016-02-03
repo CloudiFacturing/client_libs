@@ -10,3 +10,13 @@ C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\GSS_TestApp\bin\D
 C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\GSS_TestApp\bin\Debug\AuthentificationWR.pdb
 C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\GSS_TestApp\bin\Debug\AuthentificationWSDL.dll
 C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\GSS_TestApp\bin\Debug\AuthentificationWSDL.pdb
+D:\Sources\StandAlone\Caxman\Samples\infrastructureClients\gssClients\gssCSharpClients\GSS_TestApp\bin\Debug\GSS_TestApp.exe.config
+D:\Sources\StandAlone\Caxman\Samples\infrastructureClients\gssClients\gssCSharpClients\GSS_TestApp\obj\Debug\GSS_TestApp.exe
+D:\Sources\StandAlone\Caxman\Samples\infrastructureClients\gssClients\gssCSharpClients\GSS_TestApp\obj\Debug\GSS_TestApp.pdb
+D:\Sources\StandAlone\Caxman\Samples\infrastructureClients\gssClients\gssCSharpClients\GSS_TestApp\bin\Debug\GSS_TestApp.exe
+D:\Sources\StandAlone\Caxman\Samples\infrastructureClients\gssClients\gssCSharpClients\GSS_TestApp\bin\Debug\GSS_TestApp.pdb
+D:\Sources\StandAlone\Caxman\Samples\infrastructureClients\gssClients\gssCSharpClients\GSS_TestApp\bin\Debug\AuthentificationWSDL.dll
+D:\Sources\StandAlone\Caxman\Samples\infrastructureClients\gssClients\gssCSharpClients\GSS_TestApp\bin\Debug\GssInteropClass.dll
+D:\Sources\StandAlone\Caxman\Samples\infrastructureClients\gssClients\gssCSharpClients\GSS_TestApp\bin\Debug\AuthentificationWSDL.pdb
+D:\Sources\StandAlone\Caxman\Samples\infrastructureClients\gssClients\gssCSharpClients\GSS_TestApp\bin\Debug\GssInteropClass.pdb
+D:\Sources\StandAlone\Caxman\Samples\infrastructureClients\gssClients\gssCSharpClients\GSS_TestApp\obj\Debug\GSS_TestApp.csprojResolveAssemblyReference.cache
