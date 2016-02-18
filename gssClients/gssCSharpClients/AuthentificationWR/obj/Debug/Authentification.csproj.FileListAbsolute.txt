@@ -1,6 +1,0 @@
-c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\Authentification\bin\Debug\Authentification.dll
-c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\Authentification\bin\Debug\Authentification.pdb
-c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\Authentification\obj\Debug\Authentification.dll
-c:\users\joc\documents\visual studio 2013\Projects\GSS_TestApp\Authentification\obj\Debug\Authentification.pdb
-C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\Authentification\obj\Debug\Authentification.csprojResolveAssemblyReference.cache
-C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\Authentification\bin\Debug\Authentification.dll.config

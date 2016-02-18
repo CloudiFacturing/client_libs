@@ -1,6 +1,0 @@
-C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\AuthentificationWSDL2\bin\Debug\AuthentificationWSDL2.dll.config
-C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\AuthentificationWSDL2\bin\Debug\AuthentificationWSDL2.dll
-C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\AuthentificationWSDL2\bin\Debug\AuthentificationWSDL2.pdb
-C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\AuthentificationWSDL2\obj\Debug\AuthentificationWSDL2.csprojResolveAssemblyReference.cache
-C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\AuthentificationWSDL2\obj\Debug\AuthentificationWSDL2.dll
-C:\Users\joc\Documents\Visual Studio 2013\Projects\GSS_TestApp\AuthentificationWSDL2\obj\Debug\AuthentificationWSDL2.pdb
