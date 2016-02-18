@@ -352,37 +352,33 @@ namespace GSS_TestApp
             Console.Out.WriteLine("##########################");
             Console.Out.WriteLine("");
 
-            List<Thread> thList = new List<Thread>(Environment.ProcessorCount * 2);
-
             logs.Add("Thread name;Start date;Request duration");
 
+            // One of possible ways to wait for all threads to complete
+            // http://stackoverflow.com/questions/11160021/wait-for-threads-to-complete
+            // http://stackoverflow.com/questions/1584062/how-to-wait-for-thread-to-finish-with-net
+
+            var signals = new List<ManualResetEvent>();
             for (int j = 0; j < Environment.ProcessorCount * 2; j++)
             {
-                Thread th = new Thread(AskKeystones);
+                var signal = new ManualResetEvent(false);
+                signals.Add(signal);
+                Thread th = new Thread(() => { AskKeystones(); signal.Set(); });
                 th.Name = "Thread " + j;
                 th.Start();
-                thList.Add(th);
-            }
-
-
-            foreach (Thread th in thList)
-            {
-                while (th.IsAlive)
-                {
-                    Thread.Sleep(100);
-                }
             }
 
             writeLog(logs);
 
-            Console.Out.WriteLine("");
+            Console.Out.WriteLine();
             Console.Out.WriteLine("################");
-            Console.Out.WriteLine(" FINISHED ");
+            if (WaitHandle.WaitAll(signals.ToArray()))
+            {
+                Console.Out.WriteLine(" FINISHED ALL ");
+            }
             Console.Out.WriteLine("################");
-            Console.Out.WriteLine("");
+            Console.Out.WriteLine();
         }
-
-
 
         private static void AskKeystones()
         {
