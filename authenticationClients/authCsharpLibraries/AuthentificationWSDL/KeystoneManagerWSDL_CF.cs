@@ -35,6 +35,14 @@ namespace AuthentificationWSDL.CFAuth
             }
         }
 
+        public bool HasToken
+        {
+            get
+            {
+                return this.TokenId != null;
+            }
+        }
+
 
         /// <summary>
         /// Token ID
@@ -58,7 +66,6 @@ namespace AuthentificationWSDL.CFAuth
             set { this.username = value; }
         }
 
-
         /// <summary>
         /// Manager for the Keystone authentification
         /// </summary>
@@ -66,7 +73,7 @@ namespace AuthentificationWSDL.CFAuth
         internal KeystoneManagerWSDL_CF(string project)
         {
             if (this.client == null) this.client = new AuthManager();
-            
+
             if (project == null)
             {
                 this.project = KeystoneManagerWSDL_CF.KEYSTONE_PROJECT;
