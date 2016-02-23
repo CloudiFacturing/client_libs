@@ -48,11 +48,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AuthentificationWR\AuthentificationWR.csproj">
+    <ProjectReference Include="..\AuthentificationWR\AuthentificationWR.csproj">
       <Project>{c2493fad-9721-4523-9aa0-687caa2ac7e2}</Project>
       <Name>AuthentificationWR</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\AuthentificationWSDL\AuthentificationWSDL.csproj">
+    <ProjectReference Include="..\AuthentificationWSDL\AuthentificationWSDL.csproj">
       <Project>{f93380c0-a8eb-4f1f-90bf-b0eda1a4bfe2}</Project>
       <Name>AuthentificationWSDL</Name>
     </ProjectReference>
