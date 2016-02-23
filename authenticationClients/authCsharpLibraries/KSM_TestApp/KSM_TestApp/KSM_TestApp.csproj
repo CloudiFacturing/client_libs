@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{894990FB-DE07-4E79-9489-EA98921F895C}</ProjectGuid>
+    <ProjectGuid>{7BF6FA0F-3734-43E7-8B85-89A662850EE7}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GSS_TestApp</RootNamespace>
-    <AssemblyName>GSS_TestApp</AssemblyName>
+    <RootNamespace>KSM_TestApp</RootNamespace>
+    <AssemblyName>KSM_TestApp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,13 +48,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\authenticationClients\authCsharpLibraries\AuthentificationWSDL\AuthentificationWSDL.csproj">
+    <ProjectReference Include="..\..\AuthentificationWR\AuthentificationWR.csproj">
+      <Project>{c2493fad-9721-4523-9aa0-687caa2ac7e2}</Project>
+      <Name>AuthentificationWR</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AuthentificationWSDL\AuthentificationWSDL.csproj">
       <Project>{f93380c0-a8eb-4f1f-90bf-b0eda1a4bfe2}</Project>
       <Name>AuthentificationWSDL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GssInteropClass\GssInteropClass.csproj">
-      <Project>{80c97384-527c-4000-81cc-78734f23083f}</Project>
-      <Name>GssInteropClass</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

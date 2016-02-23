@@ -20,3 +20,6 @@ D:\Sources\StandAlone\Caxman\Samples\infrastructureClients\gssClients\gssCSharpC
 D:\Sources\StandAlone\Caxman\Samples\infrastructureClients\gssClients\gssCSharpClients\GSS_TestApp\bin\Debug\AuthentificationWSDL.pdb
 D:\Sources\StandAlone\Caxman\Samples\infrastructureClients\gssClients\gssCSharpClients\GSS_TestApp\bin\Debug\GssInteropClass.pdb
 D:\Sources\StandAlone\Caxman\Samples\infrastructureClients\gssClients\gssCSharpClients\GSS_TestApp\obj\Debug\GSS_TestApp.csprojResolveAssemblyReference.cache
+D:\Sources\StandAlone\Common\Network\Cloud\CloudFlow-CAxMan\gssClients\gssCSharpClients\GSS_TestApp\bin\Debug\GSS_TestApp.exe.config
+D:\Sources\StandAlone\Common\Network\Cloud\CloudFlow-CAxMan\gssClients\gssCSharpClients\GSS_TestApp\obj\Debug\GSS_TestApp.exe
+D:\Sources\StandAlone\Common\Network\Cloud\CloudFlow-CAxMan\gssClients\gssCSharpClients\GSS_TestApp\obj\Debug\GSS_TestApp.pdb
