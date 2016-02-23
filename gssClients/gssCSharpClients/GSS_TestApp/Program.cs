@@ -1,4 +1,4 @@
-﻿using AuthentificationWSDL2;
+﻿using AuthentificationWSDL.CMAuth;
 using GssInteropClass.File;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace GSS_TestApp
 {
     class Program
     {
-        private static KeystoneManagerWSDL ksManager;
+        private static KeystoneManagerWSDL_CM ksManager;
         private static GenericFileStorage fileStorage;
 
 
@@ -57,7 +57,7 @@ namespace GSS_TestApp
             }
 
 
-            ksManager = new KeystoneManagerWSDL(username, password, project);
+            ksManager = new KeystoneManagerWSDL_CM(username, password, project);
 
             if (ksManager.IsValid)
             {

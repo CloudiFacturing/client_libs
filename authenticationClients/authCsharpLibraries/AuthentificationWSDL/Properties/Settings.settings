@@ -5,5 +5,8 @@
     <Setting Name="AuthentificationWSDL_CMAuth_AuthManager" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">https://api.caxman.eu:443/sintef/infrastructure/authManager/AuthManager</Value>
     </Setting>
+    <Setting Name="AuthentificationWSDL_CFAuth_AuthManager" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://api.eu-cloudflow.eu:443/sintef/authManager/AuthManager</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -1,19 +1,19 @@
-﻿using AuthentificationWSDL.CMAuth;
+﻿using AuthentificationWSDL.CFAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AuthentificationWSDL2
+namespace AuthentificationWSDL.CFAuth
 {
-    public class KeystoneManagerWSDL
+    public class KeystoneManagerWSDL_CF
     {
         #region constant variables
-        public const string KEYSTONE_PROJECT = "caxman";
+        public const string KEYSTONE_PROJECT = "cloudflow";
         #endregion
 
-        private AuthManager client = null;
+        private AuthentificationWSDL.CFAuth.AuthManager client = null;
 
         private string project;
         public string Project
@@ -63,13 +63,13 @@ namespace AuthentificationWSDL2
         /// Manager for the Keystone authentification
         /// </summary>
         /// <param name="project">Project name</param>
-        internal KeystoneManagerWSDL(string project)
+        internal KeystoneManagerWSDL_CF(string project)
         {
             if (this.client == null) this.client = new AuthManager();
             
             if (project == null)
             {
-                this.project = KeystoneManagerWSDL.KEYSTONE_PROJECT;
+                this.project = KeystoneManagerWSDL_CF.KEYSTONE_PROJECT;
             }
             else
             {
@@ -84,7 +84,7 @@ namespace AuthentificationWSDL2
         /// <param name="username">Username use to connect</param>
         /// <param name="password">Password use to connect</param>
         /// <param name="project">Web Service tenant name</param>
-        public KeystoneManagerWSDL(string username, string password, string project)
+        public KeystoneManagerWSDL_CF(string username, string password, string project)
             : this(project)
         {
             this.Username = username;
@@ -99,7 +99,7 @@ namespace AuthentificationWSDL2
         /// <param name="webAddress">Web Service Server address</param>
         /// <param name="password">Password use to connect</param>
         /// <param name="project">Web Service tenant name</param>
-        public KeystoneManagerWSDL(string tokenId, string project = null)
+        public KeystoneManagerWSDL_CF(string tokenId, string project = null)
             : this(project)
         {
 

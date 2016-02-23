@@ -1,4 +1,6 @@
-﻿using AuthentificationWSDL2;
+﻿using AuthentificationWSDL;
+using AuthentificationWSDL.CFAuth;
+using AuthentificationWSDL.CMAuth;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,24 +12,66 @@ namespace KSM_TestApp
 {
     class Program
     {
-
-        private static KeystoneManagerWSDL ksManager;
+        private static KeystoneManagerWSDL_CM ksManager_CM;
+        private static KeystoneManagerWSDL_CF ksManager_CF;
 
         static void Main(string[] args)
         {
-            TEST_GetToken(true);
-            
-            if (!ksManager.IsValid) { Console.ReadLine(); return; }
+            TEST_GetTokenCF(true);
+            if (ksManager_CF.IsValid) TEST_GetUsername_CF();
 
-            TEST_GetUsername();            
+            TEST_GetTokenCM(true);
+            if (ksManager_CM.IsValid) TEST_GetUsername_CM();
+
+            Console.ReadLine();
         }
 
 
-        private static void TEST_GetToken(bool isStatic)
+        private static void TEST_GetTokenCF(bool isStatic)
         {
+            Console.Out.WriteLine("##################");
+            Console.Out.WriteLine("# TEST > Token CF #");
+            Console.Out.WriteLine("##################");
+            Console.Out.WriteLine("");
+
+            //default login
+            string username = "morel";
+            string password = "";
+            string project = "cloudflow";
+
+            if (!isStatic)
+            {
+                Console.Out.Write("Username = ");
+                username = Console.ReadLine();
+                Console.Out.Write("Password = ");
+                password = Console.ReadLine();
+                Console.Out.Write("Project = ");
+                project = Console.ReadLine();
+            }
+
+
+            ksManager_CF = new KeystoneManagerWSDL_CF(username, password, project);
+
+            if (ksManager_CF.IsValid)
+            {
+                Console.Out.WriteLine("Authentification: Success !");
+                Console.Out.WriteLine("Token = " + ksManager_CF.TokenId);
+            }
+            else
+            {
+                Console.Out.WriteLine("Authentification: Fail !");
+            }
+
+            Console.Out.WriteLine("");
             Console.Out.WriteLine("################");
-            Console.Out.WriteLine("# TEST > Token #");
-            Console.Out.WriteLine("################");
+            Console.Out.WriteLine("");
+        }
+
+        private static void TEST_GetTokenCM(bool isStatic)
+        {
+            Console.Out.WriteLine("##################");
+            Console.Out.WriteLine("# TEST > Token CM #");
+            Console.Out.WriteLine("##################");
             Console.Out.WriteLine("");
 
             //default login
@@ -46,12 +90,12 @@ namespace KSM_TestApp
             }
 
 
-            ksManager = new KeystoneManagerWSDL(username, password, project);
+            ksManager_CM = new KeystoneManagerWSDL_CM(username, password, project);
 
-            if (ksManager.IsValid)
+            if (ksManager_CM.IsValid)
             {
                 Console.Out.WriteLine("Authentification: Success !");
-                Console.Out.WriteLine("Token = " + ksManager.TokenId);
+                Console.Out.WriteLine("Token = " + ksManager_CM.TokenId);
             }
             else
             {
@@ -63,16 +107,37 @@ namespace KSM_TestApp
             Console.Out.WriteLine("");
         }
 
-        private static void TEST_GetUsername()
+        private static void TEST_GetUsername_CF()
         {
             Console.Out.WriteLine("################");
             Console.Out.WriteLine("# TEST > Token #");
             Console.Out.WriteLine("################");
             Console.Out.WriteLine("");
 
-            if (ksManager.IsValid && ksManager.Username != null)
+            if (ksManager_CF.IsValid && ksManager_CF.Username != null)
             {
-                Console.Out.WriteLine("Username = " + ksManager.Username);
+                Console.Out.WriteLine("Username = " + ksManager_CF.Username);
+            }
+            else
+            {
+                Console.Out.WriteLine("Unable to get the username !");
+            }
+
+            Console.Out.WriteLine("");
+            Console.Out.WriteLine("################");
+            Console.Out.WriteLine("");
+        }
+
+        private static void TEST_GetUsername_CM()
+        {
+            Console.Out.WriteLine("################");
+            Console.Out.WriteLine("# TEST > Token #");
+            Console.Out.WriteLine("################");
+            Console.Out.WriteLine("");
+
+            if (ksManager_CM.IsValid && ksManager_CM.Username != null)
+            {
+                Console.Out.WriteLine("Username = " + ksManager_CM.Username);
             }
             else
             {

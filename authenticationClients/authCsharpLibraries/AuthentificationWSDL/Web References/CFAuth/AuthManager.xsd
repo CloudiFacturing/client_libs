@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://authmanager.sintef.no/" targetNamespace="http://authmanager.sintef.no/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SOAPException" type="tns:SOAPException" />
+  <xs:element name="getEndpoint" type="tns:getEndpoint" />
+  <xs:element name="getEndpointResponse" type="tns:getEndpointResponse" />
+  <xs:element name="getProject" type="tns:getProject" />
+  <xs:element name="getProjectResponse" type="tns:getProjectResponse" />
+  <xs:element name="getRoles" type="tns:getRoles" />
+  <xs:element name="getRolesResponse" type="tns:getRolesResponse" />
+  <xs:element name="getSessionToken" type="tns:getSessionToken" />
+  <xs:element name="getSessionTokenResponse" type="tns:getSessionTokenResponse" />
+  <xs:element name="getUsername" type="tns:getUsername" />
+  <xs:element name="getUsernameResponse" type="tns:getUsernameResponse" />
+  <xs:element name="validateSessionToken" type="tns:validateSessionToken" />
+  <xs:element name="validateSessionTokenResponse" type="tns:validateSessionTokenResponse" />
+  <xs:complexType name="getEndpoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
+      <xs:element minOccurs="0" form="qualified" name="component" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getEndpointResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SOAPException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUsername">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getUsernameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRoles">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRolesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getProject">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getProjectResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="validateSessionToken">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="validateSessionTokenResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getSessionToken">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="username" type="xs:string" />
+      <xs:element minOccurs="0" form="qualified" name="password" type="xs:string" />
+      <xs:element minOccurs="0" form="qualified" name="project" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getSessionTokenResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
