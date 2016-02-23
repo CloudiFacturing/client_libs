@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2513d104-ab9f-4c06-bad2-5c9feb4b9e2e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="711af939-3231-451d-9387-b2939c4dcf45" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,8 +22,8 @@
     <MetadataSource Address="https://api.caxman.eu/sintef/infrastructure/gss-0.1/FileUtilities?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="FileUtilities1.xsd" MetadataType="Schema" ID="923c3c7c-f154-460e-b849-c23cb798c7f4" SourceId="1" SourceUrl="https://api.caxman.eu/sintef/infrastructure/gss-0.1/FileUtilities?xsd=1" />
-    <MetadataFile FileName="FileUtilities1.wsdl" MetadataType="Wsdl" ID="b9e3b025-9473-4665-9bb2-6f592cfcd274" SourceId="1" SourceUrl="https://api.caxman.eu/sintef/infrastructure/gss-0.1/FileUtilities?wsdl" />
+    <MetadataFile FileName="FileUtilities.xsd" MetadataType="Schema" ID="103fef6e-c9cd-4170-807f-1a07f50ea6f1" SourceId="1" SourceUrl="https://api.caxman.eu/sintef/infrastructure/gss-0.1/FileUtilities?xsd=1" />
+    <MetadataFile FileName="FileUtilities.wsdl" MetadataType="Wsdl" ID="60a369f5-3c5a-4533-a205-979a7038db2a" SourceId="1" SourceUrl="https://api.caxman.eu/sintef/infrastructure/gss-0.1/FileUtilities?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

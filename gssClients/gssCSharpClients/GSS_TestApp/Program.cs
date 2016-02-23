@@ -1,4 +1,5 @@
-﻿using AuthentificationWSDL.CMAuth;
+﻿using AuthentificationWSDL.CFAuth;
+using AuthentificationWSDL.CMAuth;
 using GssInteropClass.File;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace GSS_TestApp
 {
     class Program
     {
-        private static KeystoneManagerWSDL_CM ksManager;
+        private static KeystoneManagerWSDL_CF ksManager;
+        //private static KeystoneManagerWSDL_CM ksManager;
         private static GenericFileStorage fileStorage;
 
 
@@ -25,9 +27,7 @@ namespace GSS_TestApp
             TEST_GetUsername();            
 
             TEST_SwiftInteractions();
-
-            TEST_Perfos();
-
+            
             TEST_TxtFileStreamReading();
 
             //*/
@@ -42,9 +42,9 @@ namespace GSS_TestApp
             Console.Out.WriteLine("");
 
             //default login
-            string username = "caxman";
-            string password = "andR0b1n"; 
-            string project = "caxman";
+            string username = "morel";
+            string password = "ulahRPCkFXuq2hg3"; 
+            string project = "cloudflow";
 
             if (!isStatic)
             {
@@ -57,7 +57,8 @@ namespace GSS_TestApp
             }
 
 
-            ksManager = new KeystoneManagerWSDL_CM(username, password, project);
+            ksManager = new KeystoneManagerWSDL_CF(username, password, project);
+            //ksManager = new KeystoneManagerWSDL_CM(username, password, project);
 
             if (ksManager.IsValid)
             {
@@ -130,16 +131,14 @@ namespace GSS_TestApp
 
         private static void TEST_SwiftInteractions()
         {
-            Console.Out.WriteLine("##########################");
-            Console.Out.WriteLine("# TEST > FileInteraction #");
-            Console.Out.WriteLine("##########################");
+            Console.Out.WriteLine("###########################");
+            Console.Out.WriteLine("# TEST > SwiftInteraction #");
+            Console.Out.WriteLine("###########################");
             Console.Out.WriteLine("");
 
             string folderName = "file";
 
             fileStorage = new GenericFileStorage(ksManager.Username, ksManager.TokenId, StorageType.SWIFT, ksManager.Project);
-
-            //fileStorage.CreateFolder("swift://cloudflow/", folderName); 
 
             List<FileDescription> fds = fileStorage.GetFileDescriptions();
 
@@ -148,12 +147,7 @@ namespace GSS_TestApp
             {
                 fileStorage.CreateFolder(folderName);
             }
-            /*
-            fileStorage.DeleteFolder(folderName);
-            fds = fileStorage.GetFileDescriptions();
-            fileStorage.CreateFolder(folderName);
-            //*/
-
+           
             //Test du upload & download
             fds = fileStorage.GetFileDescriptions(folderName);
             FileDescription myFile;
@@ -198,152 +192,7 @@ namespace GSS_TestApp
             Console.Out.WriteLine("################");
             Console.Out.WriteLine("");
         }
-
-        private static void TEST_PlmInteractions()
-        {
-            Console.Out.WriteLine("##########################");
-            Console.Out.WriteLine("# TEST > PLM Interaction #");
-            Console.Out.WriteLine("##########################");
-            Console.Out.WriteLine("");
-
-
-            fileStorage = new GenericFileStorage(ksManager.Username, ksManager.TokenId, StorageType.PLM, "cloudflow");
-
-
-            string plmRootPath = "InitialRepository/Missler/";
-            browsePlm(plmRootPath);
-
-
-            Console.Out.WriteLine("");
-            Console.Out.WriteLine("################");
-            Console.Out.WriteLine(" FINISHED ");
-            Console.Out.WriteLine("################");
-            Console.Out.WriteLine("");
-        }
-
-        private static void browsePlm(string rootFolder)
-        {
-            Console.Out.WriteLine("");
-            Console.Out.WriteLine("### " + rootFolder + " ###");
-            Console.Out.WriteLine("");
-
-            List<FileDescription> fds = fileStorage.GetPlmFileDescriptions(rootFolder);
-
-            if (fds == null) return;
-
-            foreach (var fd in fds)
-            {
-                Console.Out.WriteLine("  " + fd.getVisualName());
-                Console.Out.WriteLine("     " + fd.getId());
-                Console.Out.WriteLine("     " + fd.getUniqueName());
-                Console.Out.WriteLine("     " + fd.getType());
-                Console.Out.WriteLine("");
-
-                if (fd.getType() == "FILE")
-                {
-                    try
-                    {
-                        var tt = fileStorage.DownloadFile(fd, @"D:\CloudFlow\DL\", "");
-                        Console.Out.WriteLine("DL completed :)");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.Out.WriteLine("DL FAIL !!! \r\n" + ex.ToString());
-                    }
-                    Console.Out.WriteLine("");
-                }
-
-                browsePlm(fd.getUniqueName());
-            }
-        }
-
-        private static void TEST_Perfos()
-        {
-            Console.Out.WriteLine("##########################");
-            Console.Out.WriteLine("# TEST > Perfos          #");
-            Console.Out.WriteLine("##########################");
-            Console.Out.WriteLine("");
-
-            List<string> perfos = new List<string>();
-
-            double ulTotalTime = 0.0;
-            double dlTotalTime = 0.0;
-
-            string filename = "image2.png";
-            FileInfo fi = new FileInfo(@"D:\CloudFlow\" + filename);
-            long fileSize = fi.Length;
-
-            int bufferSize = 128;
-
-            for (int l = 0; l < 4; l++)
-            {
-                perfos.Add("##########################");
-                perfos.Add("# " + bufferSize + " #");
-                perfos.Add("##########################");
-
-                fileStorage = new GenericFileStorage(ksManager.Username, ksManager.TokenId, StorageType.SWIFT, "cloudflow");
-                fileStorage.BufferSize = bufferSize;
-
-                string folderName = "perfos";
-
-                List<FileDescription> fds = fileStorage.GetFileDescriptions();
-                //Test du create & delete folder            
-                if (fds.Where(f => f.getVisualName().Equals(folderName)).Count() == 0)
-                {
-                    fileStorage.CreateFolder(folderName);
-                }
-
-
-
-                Console.Out.WriteLine("");
-
-                for (int j = 0; j < 10; j++)
-                {
-                    fds = fileStorage.GetFileDescriptions(folderName);
-                    FileDescription myFile;
-
-
-                    List<FileDescription> fdsResult = fds == null ? null : fds.Where(fd => fd.getUniqueName().EndsWith(folderName + "/" + filename)).ToList();
-                    if (fdsResult != null && fdsResult.Count() != 0)
-                    {
-                        fileStorage.RemoveFile(fdsResult.First());
-                    }
-
-                    DateTime startDt = DateTime.Now;
-                    myFile = fileStorage.UploadFile(@"D:\CloudFlow\" + filename, folderName);
-                    double nbSec = (DateTime.Now - startDt).TotalSeconds;
-                    double bw = fileSize / 1024 / nbSec;
-                    perfos.Add("UL = " + nbSec + " s" + " >> " + bw + " ko/s");
-
-                    ulTotalTime += nbSec;
-
-                    startDt = DateTime.Now;
-                    fileStorage.DownloadFile(myFile, @"D:\CloudFlow\DL\", "");
-                    nbSec = (DateTime.Now - startDt).TotalSeconds;
-                    bw = fileSize / 1024 / nbSec;
-                    perfos.Add("DL = " + nbSec + " s" + " >> " + bw + " ko/s");
-
-                    dlTotalTime += nbSec;
-
-                    Console.Out.Write(" -");
-                }
-
-                bufferSize = bufferSize * 2;
-
-                perfos.Add(">>>> UL moyen = " + fileSize * 10 / ulTotalTime);
-                perfos.Add(">>>> DL moyen = " + fileSize * 10 / dlTotalTime);
-
-                writeLog(perfos);
-                ulTotalTime = 0;
-                dlTotalTime = 0;
-            }
-            Console.Out.WriteLine("");
-            Console.Out.WriteLine("");
-            Console.Out.WriteLine("################");
-            Console.Out.WriteLine("");
-        }
-
-
+        
         private static void writeLog(List<string> logs)
         {
             using (StreamWriter writer = new StreamWriter(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\perfos.log", false))

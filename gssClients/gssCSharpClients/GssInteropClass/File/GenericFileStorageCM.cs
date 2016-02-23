@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Threading;
 using System.IO.Compression;
-using GssInteropClass.CF.Gss;
+using GssInteropClass.CM.Gss;
 
 namespace GssInteropClass.File
 {
-    public class GenericFileStorage
+    public class GenericFileStorageCM
     {
         private Encoding fileEncoding = Encoding.Unicode;
 
@@ -55,7 +55,7 @@ namespace GssInteropClass.File
 
         #region Constructors
 
-        public GenericFileStorage(string username, string sessionToken, StorageType type, string projectFolder)
+        public GenericFileStorageCM(string username, string sessionToken, StorageType type, string projectFolder)
         {
             this.BufferSize = 1024;
 
@@ -72,19 +72,19 @@ namespace GssInteropClass.File
             this.createFileFolder();
         }
         
-        public GenericFileStorage(string username, string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName)
+        public GenericFileStorageCM(string username, string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName)
             : this(username, sessionToken, type, projectFolder)
         {
             this.fileUtils = new FileUtilitiesClient(endPointConfigurationName);
         }
 
-        public GenericFileStorage(string username, string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName, string remoteAccess)
+        public GenericFileStorageCM(string username, string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName, string remoteAccess)
             : this(username, sessionToken, type, projectFolder)
         {
             this.fileUtils = new FileUtilitiesClient(endPointConfigurationName, remoteAccess);
         }
 
-        public GenericFileStorage(string username, string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName, System.ServiceModel.EndpointAddress remoteAccess)
+        public GenericFileStorageCM(string username, string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName, System.ServiceModel.EndpointAddress remoteAccess)
             : this(username, sessionToken, type, projectFolder)
         {
             this.fileUtils = new FileUtilitiesClient(endPointConfigurationName, remoteAccess);

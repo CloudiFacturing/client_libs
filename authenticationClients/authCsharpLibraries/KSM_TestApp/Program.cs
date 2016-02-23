@@ -36,7 +36,7 @@ namespace KSM_TestApp
 
             //default login
             string username = "morel";
-            string password = "";
+            string password = "ulahRPCkFXuq2hg3";
             string project = "cloudflow";
 
             if (!isStatic)

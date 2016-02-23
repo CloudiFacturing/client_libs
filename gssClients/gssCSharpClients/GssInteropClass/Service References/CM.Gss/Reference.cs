@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GssInteropClass.Sintef.Gss {
+namespace GssInteropClass.CM.Gss {
     
     
     /// <remarks/>
@@ -322,68 +322,68 @@ namespace GssInteropClass.Sintef.Gss {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://gss.sintef.no/", ConfigurationName="Sintef.Gss.FileUtilities")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://gss.sintef.no/", ConfigurationName="CM.Gss.FileUtilities")]
     public interface FileUtilities {
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://gss.sintef.no/FileUtilities/listFilesMinimalRequest", ReplyAction="http://gss.sintef.no/FileUtilities/listFilesMinimalResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GssInteropClass.Sintef.Gss.IOException), Action="http://gss.sintef.no/FileUtilities/listFilesMinimal/Fault/IOException", Name="IOException")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GssInteropClass.CM.Gss.IOException), Action="http://gss.sintef.no/FileUtilities/listFilesMinimal/Fault/IOException", Name="IOException")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        GssInteropClass.Sintef.Gss.listFilesMinimalResponse listFilesMinimal(GssInteropClass.Sintef.Gss.listFilesMinimalRequest request);
+        GssInteropClass.CM.Gss.listFilesMinimalResponse listFilesMinimal(GssInteropClass.CM.Gss.listFilesMinimalRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gss.sintef.no/FileUtilities/listFilesMinimalRequest", ReplyAction="http://gss.sintef.no/FileUtilities/listFilesMinimalResponse")]
-        System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.listFilesMinimalResponse> listFilesMinimalAsync(GssInteropClass.Sintef.Gss.listFilesMinimalRequest request);
+        System.Threading.Tasks.Task<GssInteropClass.CM.Gss.listFilesMinimalResponse> listFilesMinimalAsync(GssInteropClass.CM.Gss.listFilesMinimalRequest request);
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://gss.sintef.no/FileUtilities/createFolderRequest", ReplyAction="http://gss.sintef.no/FileUtilities/createFolderResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GssInteropClass.Sintef.Gss.IOException), Action="http://gss.sintef.no/FileUtilities/createFolder/Fault/IOException", Name="IOException")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GssInteropClass.CM.Gss.IOException), Action="http://gss.sintef.no/FileUtilities/createFolder/Fault/IOException", Name="IOException")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        GssInteropClass.Sintef.Gss.createFolderResponse createFolder(GssInteropClass.Sintef.Gss.createFolderRequest request);
+        GssInteropClass.CM.Gss.createFolderResponse createFolder(GssInteropClass.CM.Gss.createFolderRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gss.sintef.no/FileUtilities/createFolderRequest", ReplyAction="http://gss.sintef.no/FileUtilities/createFolderResponse")]
-        System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.createFolderResponse> createFolderAsync(GssInteropClass.Sintef.Gss.createFolderRequest request);
+        System.Threading.Tasks.Task<GssInteropClass.CM.Gss.createFolderResponse> createFolderAsync(GssInteropClass.CM.Gss.createFolderRequest request);
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://gss.sintef.no/FileUtilities/deleteFolderRequest", ReplyAction="http://gss.sintef.no/FileUtilities/deleteFolderResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GssInteropClass.Sintef.Gss.IOException), Action="http://gss.sintef.no/FileUtilities/deleteFolder/Fault/IOException", Name="IOException")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GssInteropClass.CM.Gss.IOException), Action="http://gss.sintef.no/FileUtilities/deleteFolder/Fault/IOException", Name="IOException")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        GssInteropClass.Sintef.Gss.deleteFolderResponse deleteFolder(GssInteropClass.Sintef.Gss.deleteFolderRequest request);
+        GssInteropClass.CM.Gss.deleteFolderResponse deleteFolder(GssInteropClass.CM.Gss.deleteFolderRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gss.sintef.no/FileUtilities/deleteFolderRequest", ReplyAction="http://gss.sintef.no/FileUtilities/deleteFolderResponse")]
-        System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.deleteFolderResponse> deleteFolderAsync(GssInteropClass.Sintef.Gss.deleteFolderRequest request);
+        System.Threading.Tasks.Task<GssInteropClass.CM.Gss.deleteFolderResponse> deleteFolderAsync(GssInteropClass.CM.Gss.deleteFolderRequest request);
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://gss.sintef.no/FileUtilities/getResourceInformationRequest", ReplyAction="http://gss.sintef.no/FileUtilities/getResourceInformationResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GssInteropClass.Sintef.Gss.IOException), Action="http://gss.sintef.no/FileUtilities/getResourceInformation/Fault/IOException", Name="IOException")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GssInteropClass.CM.Gss.IOException), Action="http://gss.sintef.no/FileUtilities/getResourceInformation/Fault/IOException", Name="IOException")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        GssInteropClass.Sintef.Gss.getResourceInformationResponse getResourceInformation(GssInteropClass.Sintef.Gss.getResourceInformationRequest request);
+        GssInteropClass.CM.Gss.getResourceInformationResponse getResourceInformation(GssInteropClass.CM.Gss.getResourceInformationRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gss.sintef.no/FileUtilities/getResourceInformationRequest", ReplyAction="http://gss.sintef.no/FileUtilities/getResourceInformationResponse")]
-        System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.getResourceInformationResponse> getResourceInformationAsync(GssInteropClass.Sintef.Gss.getResourceInformationRequest request);
+        System.Threading.Tasks.Task<GssInteropClass.CM.Gss.getResourceInformationResponse> getResourceInformationAsync(GssInteropClass.CM.Gss.getResourceInformationRequest request);
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://gss.sintef.no/FileUtilities/containsFileRequest", ReplyAction="http://gss.sintef.no/FileUtilities/containsFileResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GssInteropClass.Sintef.Gss.IOException), Action="http://gss.sintef.no/FileUtilities/containsFile/Fault/IOException", Name="IOException")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GssInteropClass.CM.Gss.IOException), Action="http://gss.sintef.no/FileUtilities/containsFile/Fault/IOException", Name="IOException")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        GssInteropClass.Sintef.Gss.containsFileResponse containsFile(GssInteropClass.Sintef.Gss.containsFileRequest request);
+        GssInteropClass.CM.Gss.containsFileResponse containsFile(GssInteropClass.CM.Gss.containsFileRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gss.sintef.no/FileUtilities/containsFileRequest", ReplyAction="http://gss.sintef.no/FileUtilities/containsFileResponse")]
-        System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.containsFileResponse> containsFileAsync(GssInteropClass.Sintef.Gss.containsFileRequest request);
+        System.Threading.Tasks.Task<GssInteropClass.CM.Gss.containsFileResponse> containsFileAsync(GssInteropClass.CM.Gss.containsFileRequest request);
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://gss.sintef.no/FileUtilities/listFilesRequest", ReplyAction="http://gss.sintef.no/FileUtilities/listFilesResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GssInteropClass.Sintef.Gss.IOException), Action="http://gss.sintef.no/FileUtilities/listFiles/Fault/IOException", Name="IOException")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GssInteropClass.CM.Gss.IOException), Action="http://gss.sintef.no/FileUtilities/listFiles/Fault/IOException", Name="IOException")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        GssInteropClass.Sintef.Gss.listFilesResponse listFiles(GssInteropClass.Sintef.Gss.listFilesRequest request);
+        GssInteropClass.CM.Gss.listFilesResponse listFiles(GssInteropClass.CM.Gss.listFilesRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://gss.sintef.no/FileUtilities/listFilesRequest", ReplyAction="http://gss.sintef.no/FileUtilities/listFilesResponse")]
-        System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.listFilesResponse> listFilesAsync(GssInteropClass.Sintef.Gss.listFilesRequest request);
+        System.Threading.Tasks.Task<GssInteropClass.CM.Gss.listFilesResponse> listFilesAsync(GssInteropClass.CM.Gss.listFilesRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -415,12 +415,12 @@ namespace GssInteropClass.Sintef.Gss {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://gss.sintef.no/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public GssInteropClass.Sintef.Gss.resourceInformation[] @return;
+        public GssInteropClass.CM.Gss.resourceInformation[] @return;
         
         public listFilesMinimalResponse() {
         }
         
-        public listFilesMinimalResponse(GssInteropClass.Sintef.Gss.resourceInformation[] @return) {
+        public listFilesMinimalResponse(GssInteropClass.CM.Gss.resourceInformation[] @return) {
             this.@return = @return;
         }
     }
@@ -454,12 +454,12 @@ namespace GssInteropClass.Sintef.Gss {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://gss.sintef.no/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public GssInteropClass.Sintef.Gss.resourceInformation @return;
+        public GssInteropClass.CM.Gss.resourceInformation @return;
         
         public createFolderResponse() {
         }
         
-        public createFolderResponse(GssInteropClass.Sintef.Gss.resourceInformation @return) {
+        public createFolderResponse(GssInteropClass.CM.Gss.resourceInformation @return) {
             this.@return = @return;
         }
     }
@@ -532,12 +532,12 @@ namespace GssInteropClass.Sintef.Gss {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://gss.sintef.no/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public GssInteropClass.Sintef.Gss.resourceInformation @return;
+        public GssInteropClass.CM.Gss.resourceInformation @return;
         
         public getResourceInformationResponse() {
         }
         
-        public getResourceInformationResponse(GssInteropClass.Sintef.Gss.resourceInformation @return) {
+        public getResourceInformationResponse(GssInteropClass.CM.Gss.resourceInformation @return) {
             this.@return = @return;
         }
     }
@@ -610,23 +610,23 @@ namespace GssInteropClass.Sintef.Gss {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://gss.sintef.no/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public GssInteropClass.Sintef.Gss.resourceInformation[] @return;
+        public GssInteropClass.CM.Gss.resourceInformation[] @return;
         
         public listFilesResponse() {
         }
         
-        public listFilesResponse(GssInteropClass.Sintef.Gss.resourceInformation[] @return) {
+        public listFilesResponse(GssInteropClass.CM.Gss.resourceInformation[] @return) {
             this.@return = @return;
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface FileUtilitiesChannel : GssInteropClass.Sintef.Gss.FileUtilities, System.ServiceModel.IClientChannel {
+    public interface FileUtilitiesChannel : GssInteropClass.CM.Gss.FileUtilities, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class FileUtilitiesClient : System.ServiceModel.ClientBase<GssInteropClass.Sintef.Gss.FileUtilities>, GssInteropClass.Sintef.Gss.FileUtilities {
+    public partial class FileUtilitiesClient : System.ServiceModel.ClientBase<GssInteropClass.CM.Gss.FileUtilities>, GssInteropClass.CM.Gss.FileUtilities {
         
         public FileUtilitiesClient() {
         }
@@ -648,153 +648,153 @@ namespace GssInteropClass.Sintef.Gss {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        GssInteropClass.Sintef.Gss.listFilesMinimalResponse GssInteropClass.Sintef.Gss.FileUtilities.listFilesMinimal(GssInteropClass.Sintef.Gss.listFilesMinimalRequest request) {
+        GssInteropClass.CM.Gss.listFilesMinimalResponse GssInteropClass.CM.Gss.FileUtilities.listFilesMinimal(GssInteropClass.CM.Gss.listFilesMinimalRequest request) {
             return base.Channel.listFilesMinimal(request);
         }
         
-        public GssInteropClass.Sintef.Gss.resourceInformation[] listFilesMinimal(string fileID, string session_id) {
-            GssInteropClass.Sintef.Gss.listFilesMinimalRequest inValue = new GssInteropClass.Sintef.Gss.listFilesMinimalRequest();
+        public GssInteropClass.CM.Gss.resourceInformation[] listFilesMinimal(string fileID, string session_id) {
+            GssInteropClass.CM.Gss.listFilesMinimalRequest inValue = new GssInteropClass.CM.Gss.listFilesMinimalRequest();
             inValue.fileID = fileID;
             inValue.session_id = session_id;
-            GssInteropClass.Sintef.Gss.listFilesMinimalResponse retVal = ((GssInteropClass.Sintef.Gss.FileUtilities)(this)).listFilesMinimal(inValue);
+            GssInteropClass.CM.Gss.listFilesMinimalResponse retVal = ((GssInteropClass.CM.Gss.FileUtilities)(this)).listFilesMinimal(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.listFilesMinimalResponse> GssInteropClass.Sintef.Gss.FileUtilities.listFilesMinimalAsync(GssInteropClass.Sintef.Gss.listFilesMinimalRequest request) {
+        System.Threading.Tasks.Task<GssInteropClass.CM.Gss.listFilesMinimalResponse> GssInteropClass.CM.Gss.FileUtilities.listFilesMinimalAsync(GssInteropClass.CM.Gss.listFilesMinimalRequest request) {
             return base.Channel.listFilesMinimalAsync(request);
         }
         
-        public System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.listFilesMinimalResponse> listFilesMinimalAsync(string fileID, string session_id) {
-            GssInteropClass.Sintef.Gss.listFilesMinimalRequest inValue = new GssInteropClass.Sintef.Gss.listFilesMinimalRequest();
+        public System.Threading.Tasks.Task<GssInteropClass.CM.Gss.listFilesMinimalResponse> listFilesMinimalAsync(string fileID, string session_id) {
+            GssInteropClass.CM.Gss.listFilesMinimalRequest inValue = new GssInteropClass.CM.Gss.listFilesMinimalRequest();
             inValue.fileID = fileID;
             inValue.session_id = session_id;
-            return ((GssInteropClass.Sintef.Gss.FileUtilities)(this)).listFilesMinimalAsync(inValue);
+            return ((GssInteropClass.CM.Gss.FileUtilities)(this)).listFilesMinimalAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        GssInteropClass.Sintef.Gss.createFolderResponse GssInteropClass.Sintef.Gss.FileUtilities.createFolder(GssInteropClass.Sintef.Gss.createFolderRequest request) {
+        GssInteropClass.CM.Gss.createFolderResponse GssInteropClass.CM.Gss.FileUtilities.createFolder(GssInteropClass.CM.Gss.createFolderRequest request) {
             return base.Channel.createFolder(request);
         }
         
-        public GssInteropClass.Sintef.Gss.resourceInformation createFolder(string folderID, string session_id) {
-            GssInteropClass.Sintef.Gss.createFolderRequest inValue = new GssInteropClass.Sintef.Gss.createFolderRequest();
+        public GssInteropClass.CM.Gss.resourceInformation createFolder(string folderID, string session_id) {
+            GssInteropClass.CM.Gss.createFolderRequest inValue = new GssInteropClass.CM.Gss.createFolderRequest();
             inValue.folderID = folderID;
             inValue.session_id = session_id;
-            GssInteropClass.Sintef.Gss.createFolderResponse retVal = ((GssInteropClass.Sintef.Gss.FileUtilities)(this)).createFolder(inValue);
+            GssInteropClass.CM.Gss.createFolderResponse retVal = ((GssInteropClass.CM.Gss.FileUtilities)(this)).createFolder(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.createFolderResponse> GssInteropClass.Sintef.Gss.FileUtilities.createFolderAsync(GssInteropClass.Sintef.Gss.createFolderRequest request) {
+        System.Threading.Tasks.Task<GssInteropClass.CM.Gss.createFolderResponse> GssInteropClass.CM.Gss.FileUtilities.createFolderAsync(GssInteropClass.CM.Gss.createFolderRequest request) {
             return base.Channel.createFolderAsync(request);
         }
         
-        public System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.createFolderResponse> createFolderAsync(string folderID, string session_id) {
-            GssInteropClass.Sintef.Gss.createFolderRequest inValue = new GssInteropClass.Sintef.Gss.createFolderRequest();
+        public System.Threading.Tasks.Task<GssInteropClass.CM.Gss.createFolderResponse> createFolderAsync(string folderID, string session_id) {
+            GssInteropClass.CM.Gss.createFolderRequest inValue = new GssInteropClass.CM.Gss.createFolderRequest();
             inValue.folderID = folderID;
             inValue.session_id = session_id;
-            return ((GssInteropClass.Sintef.Gss.FileUtilities)(this)).createFolderAsync(inValue);
+            return ((GssInteropClass.CM.Gss.FileUtilities)(this)).createFolderAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        GssInteropClass.Sintef.Gss.deleteFolderResponse GssInteropClass.Sintef.Gss.FileUtilities.deleteFolder(GssInteropClass.Sintef.Gss.deleteFolderRequest request) {
+        GssInteropClass.CM.Gss.deleteFolderResponse GssInteropClass.CM.Gss.FileUtilities.deleteFolder(GssInteropClass.CM.Gss.deleteFolderRequest request) {
             return base.Channel.deleteFolder(request);
         }
         
         public bool deleteFolder(string folderID, string session_id) {
-            GssInteropClass.Sintef.Gss.deleteFolderRequest inValue = new GssInteropClass.Sintef.Gss.deleteFolderRequest();
+            GssInteropClass.CM.Gss.deleteFolderRequest inValue = new GssInteropClass.CM.Gss.deleteFolderRequest();
             inValue.folderID = folderID;
             inValue.session_id = session_id;
-            GssInteropClass.Sintef.Gss.deleteFolderResponse retVal = ((GssInteropClass.Sintef.Gss.FileUtilities)(this)).deleteFolder(inValue);
+            GssInteropClass.CM.Gss.deleteFolderResponse retVal = ((GssInteropClass.CM.Gss.FileUtilities)(this)).deleteFolder(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.deleteFolderResponse> GssInteropClass.Sintef.Gss.FileUtilities.deleteFolderAsync(GssInteropClass.Sintef.Gss.deleteFolderRequest request) {
+        System.Threading.Tasks.Task<GssInteropClass.CM.Gss.deleteFolderResponse> GssInteropClass.CM.Gss.FileUtilities.deleteFolderAsync(GssInteropClass.CM.Gss.deleteFolderRequest request) {
             return base.Channel.deleteFolderAsync(request);
         }
         
-        public System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.deleteFolderResponse> deleteFolderAsync(string folderID, string session_id) {
-            GssInteropClass.Sintef.Gss.deleteFolderRequest inValue = new GssInteropClass.Sintef.Gss.deleteFolderRequest();
+        public System.Threading.Tasks.Task<GssInteropClass.CM.Gss.deleteFolderResponse> deleteFolderAsync(string folderID, string session_id) {
+            GssInteropClass.CM.Gss.deleteFolderRequest inValue = new GssInteropClass.CM.Gss.deleteFolderRequest();
             inValue.folderID = folderID;
             inValue.session_id = session_id;
-            return ((GssInteropClass.Sintef.Gss.FileUtilities)(this)).deleteFolderAsync(inValue);
+            return ((GssInteropClass.CM.Gss.FileUtilities)(this)).deleteFolderAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        GssInteropClass.Sintef.Gss.getResourceInformationResponse GssInteropClass.Sintef.Gss.FileUtilities.getResourceInformation(GssInteropClass.Sintef.Gss.getResourceInformationRequest request) {
+        GssInteropClass.CM.Gss.getResourceInformationResponse GssInteropClass.CM.Gss.FileUtilities.getResourceInformation(GssInteropClass.CM.Gss.getResourceInformationRequest request) {
             return base.Channel.getResourceInformation(request);
         }
         
-        public GssInteropClass.Sintef.Gss.resourceInformation getResourceInformation(string fileID, string session_id) {
-            GssInteropClass.Sintef.Gss.getResourceInformationRequest inValue = new GssInteropClass.Sintef.Gss.getResourceInformationRequest();
+        public GssInteropClass.CM.Gss.resourceInformation getResourceInformation(string fileID, string session_id) {
+            GssInteropClass.CM.Gss.getResourceInformationRequest inValue = new GssInteropClass.CM.Gss.getResourceInformationRequest();
             inValue.fileID = fileID;
             inValue.session_id = session_id;
-            GssInteropClass.Sintef.Gss.getResourceInformationResponse retVal = ((GssInteropClass.Sintef.Gss.FileUtilities)(this)).getResourceInformation(inValue);
+            GssInteropClass.CM.Gss.getResourceInformationResponse retVal = ((GssInteropClass.CM.Gss.FileUtilities)(this)).getResourceInformation(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.getResourceInformationResponse> GssInteropClass.Sintef.Gss.FileUtilities.getResourceInformationAsync(GssInteropClass.Sintef.Gss.getResourceInformationRequest request) {
+        System.Threading.Tasks.Task<GssInteropClass.CM.Gss.getResourceInformationResponse> GssInteropClass.CM.Gss.FileUtilities.getResourceInformationAsync(GssInteropClass.CM.Gss.getResourceInformationRequest request) {
             return base.Channel.getResourceInformationAsync(request);
         }
         
-        public System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.getResourceInformationResponse> getResourceInformationAsync(string fileID, string session_id) {
-            GssInteropClass.Sintef.Gss.getResourceInformationRequest inValue = new GssInteropClass.Sintef.Gss.getResourceInformationRequest();
+        public System.Threading.Tasks.Task<GssInteropClass.CM.Gss.getResourceInformationResponse> getResourceInformationAsync(string fileID, string session_id) {
+            GssInteropClass.CM.Gss.getResourceInformationRequest inValue = new GssInteropClass.CM.Gss.getResourceInformationRequest();
             inValue.fileID = fileID;
             inValue.session_id = session_id;
-            return ((GssInteropClass.Sintef.Gss.FileUtilities)(this)).getResourceInformationAsync(inValue);
+            return ((GssInteropClass.CM.Gss.FileUtilities)(this)).getResourceInformationAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        GssInteropClass.Sintef.Gss.containsFileResponse GssInteropClass.Sintef.Gss.FileUtilities.containsFile(GssInteropClass.Sintef.Gss.containsFileRequest request) {
+        GssInteropClass.CM.Gss.containsFileResponse GssInteropClass.CM.Gss.FileUtilities.containsFile(GssInteropClass.CM.Gss.containsFileRequest request) {
             return base.Channel.containsFile(request);
         }
         
         public bool containsFile(string fileID, string session_id) {
-            GssInteropClass.Sintef.Gss.containsFileRequest inValue = new GssInteropClass.Sintef.Gss.containsFileRequest();
+            GssInteropClass.CM.Gss.containsFileRequest inValue = new GssInteropClass.CM.Gss.containsFileRequest();
             inValue.fileID = fileID;
             inValue.session_id = session_id;
-            GssInteropClass.Sintef.Gss.containsFileResponse retVal = ((GssInteropClass.Sintef.Gss.FileUtilities)(this)).containsFile(inValue);
+            GssInteropClass.CM.Gss.containsFileResponse retVal = ((GssInteropClass.CM.Gss.FileUtilities)(this)).containsFile(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.containsFileResponse> GssInteropClass.Sintef.Gss.FileUtilities.containsFileAsync(GssInteropClass.Sintef.Gss.containsFileRequest request) {
+        System.Threading.Tasks.Task<GssInteropClass.CM.Gss.containsFileResponse> GssInteropClass.CM.Gss.FileUtilities.containsFileAsync(GssInteropClass.CM.Gss.containsFileRequest request) {
             return base.Channel.containsFileAsync(request);
         }
         
-        public System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.containsFileResponse> containsFileAsync(string fileID, string session_id) {
-            GssInteropClass.Sintef.Gss.containsFileRequest inValue = new GssInteropClass.Sintef.Gss.containsFileRequest();
+        public System.Threading.Tasks.Task<GssInteropClass.CM.Gss.containsFileResponse> containsFileAsync(string fileID, string session_id) {
+            GssInteropClass.CM.Gss.containsFileRequest inValue = new GssInteropClass.CM.Gss.containsFileRequest();
             inValue.fileID = fileID;
             inValue.session_id = session_id;
-            return ((GssInteropClass.Sintef.Gss.FileUtilities)(this)).containsFileAsync(inValue);
+            return ((GssInteropClass.CM.Gss.FileUtilities)(this)).containsFileAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        GssInteropClass.Sintef.Gss.listFilesResponse GssInteropClass.Sintef.Gss.FileUtilities.listFiles(GssInteropClass.Sintef.Gss.listFilesRequest request) {
+        GssInteropClass.CM.Gss.listFilesResponse GssInteropClass.CM.Gss.FileUtilities.listFiles(GssInteropClass.CM.Gss.listFilesRequest request) {
             return base.Channel.listFiles(request);
         }
         
-        public GssInteropClass.Sintef.Gss.resourceInformation[] listFiles(string fileID, string session_id) {
-            GssInteropClass.Sintef.Gss.listFilesRequest inValue = new GssInteropClass.Sintef.Gss.listFilesRequest();
+        public GssInteropClass.CM.Gss.resourceInformation[] listFiles(string fileID, string session_id) {
+            GssInteropClass.CM.Gss.listFilesRequest inValue = new GssInteropClass.CM.Gss.listFilesRequest();
             inValue.fileID = fileID;
             inValue.session_id = session_id;
-            GssInteropClass.Sintef.Gss.listFilesResponse retVal = ((GssInteropClass.Sintef.Gss.FileUtilities)(this)).listFiles(inValue);
+            GssInteropClass.CM.Gss.listFilesResponse retVal = ((GssInteropClass.CM.Gss.FileUtilities)(this)).listFiles(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.listFilesResponse> GssInteropClass.Sintef.Gss.FileUtilities.listFilesAsync(GssInteropClass.Sintef.Gss.listFilesRequest request) {
+        System.Threading.Tasks.Task<GssInteropClass.CM.Gss.listFilesResponse> GssInteropClass.CM.Gss.FileUtilities.listFilesAsync(GssInteropClass.CM.Gss.listFilesRequest request) {
             return base.Channel.listFilesAsync(request);
         }
         
-        public System.Threading.Tasks.Task<GssInteropClass.Sintef.Gss.listFilesResponse> listFilesAsync(string fileID, string session_id) {
-            GssInteropClass.Sintef.Gss.listFilesRequest inValue = new GssInteropClass.Sintef.Gss.listFilesRequest();
+        public System.Threading.Tasks.Task<GssInteropClass.CM.Gss.listFilesResponse> listFilesAsync(string fileID, string session_id) {
+            GssInteropClass.CM.Gss.listFilesRequest inValue = new GssInteropClass.CM.Gss.listFilesRequest();
             inValue.fileID = fileID;
             inValue.session_id = session_id;
-            return ((GssInteropClass.Sintef.Gss.FileUtilities)(this)).listFilesAsync(inValue);
+            return ((GssInteropClass.CM.Gss.FileUtilities)(this)).listFilesAsync(inValue);
         }
     }
 }

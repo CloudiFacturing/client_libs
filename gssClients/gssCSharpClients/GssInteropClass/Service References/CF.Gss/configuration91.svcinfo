@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="eT3anCQDPMnwn44gJ/lCGAxJMoQ=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="01U180TvfaGGX5VKpZfsITSI3Zk=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="FileUtilitiesPortBinding">
       <properties>
@@ -221,10 +221,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="FileUtilitiesPort" contract="Sintef.Gss.FileUtilities" bindingType="basicHttpBinding" address="https://api.caxman.eu/sintef/infrastructure/gss-0.1/FileUtilities" bindingConfiguration="FileUtilitiesPortBinding">
+    <endpoint name="FileUtilitiesPort" contract="CF.Gss.FileUtilities" bindingType="basicHttpBinding" address="https://api.eu-cloudflow.eu/sintef/gss-0.1/FileUtilities" bindingConfiguration="FileUtilitiesPortBinding">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>https://api.caxman.eu:443/sintef/infrastructure/gss-0.1/FileUtilities</serializedValue>
+          <serializedValue>https://api.eu-cloudflow.eu:443/sintef/gss-0.1/FileUtilities</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -236,7 +236,7 @@
           <serializedValue>FileUtilitiesPortBinding</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>Sintef.Gss.FileUtilities</serializedValue>
+          <serializedValue>CF.Gss.FileUtilities</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
