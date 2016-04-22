@@ -25,7 +25,6 @@ if not uploadDescription.supported:
     uploadDescription = resourceInformation.updateDescription
 
 if uploadDescription.supported:
-    print uploadDescription
     headers = {}
     headers[uploadDescription.sessionTokenField] = sessionToken
     headers["Content-Length"]= "%d" % os.stat(filenameIn).st_size
