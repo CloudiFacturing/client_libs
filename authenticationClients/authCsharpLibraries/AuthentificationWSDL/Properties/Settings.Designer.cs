@@ -26,20 +26,20 @@ namespace AuthentificationWSDL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://api.caxman.eu:443/sintef/infrastructure/authManager/AuthManager")]
-        public string AuthentificationWSDL_CMAuth_AuthManager {
+        [global::System.Configuration.DefaultSettingValueAttribute("https://api.eu-cloudflow.eu:443/sintef/authManager/AuthManager")]
+        public string AuthentificationWSDL_CFAuth_AuthManager {
             get {
-                return ((string)(this["AuthentificationWSDL_CMAuth_AuthManager"]));
+                return ((string)(this["AuthentificationWSDL_CFAuth_AuthManager"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://api.eu-cloudflow.eu:443/sintef/authManager/AuthManager")]
-        public string AuthentificationWSDL_CFAuth_AuthManager {
+        [global::System.Configuration.DefaultSettingValueAttribute("https://api.caxman.eu:443/sintef/auth/authManager/AuthManager")]
+        public string AuthentificationWSDL_CMAuth_AuthManager {
             get {
-                return ((string)(this["AuthentificationWSDL_CFAuth_AuthManager"]));
+                return ((string)(this["AuthentificationWSDL_CMAuth_AuthManager"]));
             }
         }
     }

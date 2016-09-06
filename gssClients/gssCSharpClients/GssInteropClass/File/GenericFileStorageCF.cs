@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Threading;
 using System.IO.Compression;
-using GssInteropClass.CM.Gss;
+using GssInteropClass.CF.Gss;
 
 namespace GssInteropClass.File
 {
-    public class GenericFileStorageCM : GenericFileStorage
+    public class GenericFileStorageCF: GenericFileStorage
     {
         private Encoding fileEncoding = Encoding.Unicode;
 
@@ -27,13 +27,14 @@ namespace GssInteropClass.File
         private StorageType type;
         public override StorageType Type { get { return this.type; } }
 
-        private string projectFolder = "";
+        private string projectFolder = "cloudflow";
         public override string ProjectFolder { get { return this.projectFolder; } }
 
         private string currentFolder = "";
         public override string CurrentFolder { get { return this.currentFolder; } }
 
         private FileUtilitiesClient fileUtils;
+
 
         private string filePrefix = string.Empty;
         public override string FilePrefix
@@ -48,12 +49,12 @@ namespace GssInteropClass.File
                             this.filePrefix = "plm://";
                             break;
                         case StorageType.SWIFT:
-                            this.filePrefix = string.Format("swift://{0}/{1}/", this.ProjectFolder, this.Username);
+                            this.filePrefix = string.Format("swift://{0}/{1}/", this.projectFolder, this.Username);
                             break;
                         case StorageType.FILE: //OLD system > tranform to swift
                         default:
                             //this.filePrefix = "file://" + this.Username + "/"; //obsolete
-                            this.filePrefix = string.Format("swift://{0}/{1}/file/", this.ProjectFolder, this.Username);
+                            this.filePrefix = string.Format("swift://{0}/{1}/file/", this.projectFolder, this.Username);
                             break;
                     }
                 }
@@ -63,8 +64,8 @@ namespace GssInteropClass.File
         }
 
         #region Constructors
-
-        public GenericFileStorageCM(string username, string sessionToken, StorageType type, string projectFolder)
+        
+        public GenericFileStorageCF(string username, string sessionToken, StorageType type, string projectFolder)
         {
             this.bufferSize = 1024;
 
@@ -76,24 +77,31 @@ namespace GssInteropClass.File
             this.fileUtils = new FileUtilitiesClient();
 
 
-            //In case of old FILE storage type, it will create the default folder
-            //in the good swift folder
-            this.createFileFolder();
+            if (type == StorageType.FILE)
+            {
+                //In case of old FILE storage type, it will create the default folder
+                //in the good swift folder
+                this.createFileFolder();
+            }
+            else
+            {                
+                this.CreateFolder(string.Format("swift://{0}/", this.projectFolder), this.Username);
+            }
         }
-
-        public GenericFileStorageCM(string username, string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName)
+        
+        public GenericFileStorageCF(string username, string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName)
             : this(username, sessionToken, type, projectFolder)
         {
             this.fileUtils = new FileUtilitiesClient(endPointConfigurationName);
         }
 
-        public GenericFileStorageCM(string username, string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName, string remoteAccess)
+        public GenericFileStorageCF(string username, string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName, string remoteAccess)
             : this(username, sessionToken, type, projectFolder)
         {
             this.fileUtils = new FileUtilitiesClient(endPointConfigurationName, remoteAccess);
         }
 
-        public GenericFileStorageCM(string username, string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName, System.ServiceModel.EndpointAddress remoteAccess)
+        public GenericFileStorageCF(string username, string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName, System.ServiceModel.EndpointAddress remoteAccess)
             : this(username, sessionToken, type, projectFolder)
         {
             this.fileUtils = new FileUtilitiesClient(endPointConfigurationName, remoteAccess);
@@ -121,7 +129,7 @@ namespace GssInteropClass.File
             }
             catch { }
 
-            string filePrefix = string.Format("swift://{0}/", this.ProjectFolder);
+            string filePrefix = string.Format("swift://{0}/", this.projectFolder);
 
             var rootFilesAndFolders = this.GetFileDescriptions(filePrefix, "");
 
@@ -241,10 +249,7 @@ namespace GssInteropClass.File
         /// <returns></returns>
         public override FileDescription CreateFolder(string folderName)
         {
-            string serverFolderName = this.FilePrefix + folderName.Trim('/') + "/";
-            var ri = fileUtils.createFolder(serverFolderName, this.SessionToken);
-
-            return new FileDescription(ri.visualName, ri.uniqueName, new FileIdentifier(""), ri.type);
+            return this.CreateFolder(this.FilePrefix, folderName);
         }
 
         /// <summary>
@@ -255,7 +260,9 @@ namespace GssInteropClass.File
         /// <returns></returns>
         public override FileDescription CreateFolder(string prefix, string folderName)
         {
-            string serverFolderName = prefix + folderName.Trim('/') + "/";
+            string encodedFolderName = System.Web.HttpUtility.UrlEncode(folderName);
+
+            string serverFolderName = prefix + encodedFolderName.Trim('/') + "/";
             var ri = fileUtils.createFolder(serverFolderName, this.SessionToken);
 
             return new FileDescription(ri.visualName, ri.uniqueName, new FileIdentifier(""), ri.type);
@@ -313,13 +320,11 @@ namespace GssInteropClass.File
                 cloudFilename += ".zip";
             }
 
-            if (distantPath.StartsWith(this.FilePrefix)) distantPath = distantPath.Substring(FilePrefix.Length);
-
-            string cloudFolderEncoded = System.Web.HttpUtility.UrlEncode(distantPath.Trim('/'));
+            string cloudFolderEncoded = distantPath.Trim('/');
             string cloudFilenameEncoded = System.Web.HttpUtility.UrlEncode(cloudFilename);
 
             if (this.Type == StorageType.FILE) serverFilename = this.FilePrefix + cloudFilenameEncoded;
-            else serverFilename = this.FilePrefix + cloudFolderEncoded + "/" + cloudFilenameEncoded;
+            else serverFilename = cloudFolderEncoded + "/" + cloudFilenameEncoded;
 
             this.DeleteFileIfExist(serverFilename);
 
@@ -581,6 +586,7 @@ namespace GssInteropClass.File
         /// Remove a file
         /// </summary>
         /// <param name="file">File description</param>
+        /// <param name="file">True to not throw any exception</param>
         public override void RemoveFile(FileDescription file, bool blockExceptions = false)
         {
             this.RemoveFile(file.getId().getUuid(), blockExceptions);

@@ -3,6 +3,8 @@
   <xs:element name="SOAPException" type="tns:SOAPException" />
   <xs:element name="getEndpoint" type="tns:getEndpoint" />
   <xs:element name="getEndpointResponse" type="tns:getEndpointResponse" />
+  <xs:element name="getOpenStackToken" type="tns:getOpenStackToken" />
+  <xs:element name="getOpenStackTokenResponse" type="tns:getOpenStackTokenResponse" />
   <xs:element name="getProject" type="tns:getProject" />
   <xs:element name="getProjectResponse" type="tns:getProjectResponse" />
   <xs:element name="getRoles" type="tns:getRoles" />
@@ -11,6 +13,8 @@
   <xs:element name="getSessionTokenResponse" type="tns:getSessionTokenResponse" />
   <xs:element name="getUsername" type="tns:getUsername" />
   <xs:element name="getUsernameResponse" type="tns:getUsernameResponse" />
+  <xs:element name="systemPropTest" type="tns:systemPropTest" />
+  <xs:element name="systemPropTestResponse" type="tns:systemPropTestResponse" />
   <xs:element name="validateSessionToken" type="tns:validateSessionToken" />
   <xs:element name="validateSessionTokenResponse" type="tns:validateSessionTokenResponse" />
   <xs:complexType name="getEndpoint">
@@ -59,6 +63,16 @@
       <xs:element minOccurs="0" name="return" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="systemPropTest">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="input" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="systemPropTestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="validateSessionToken">
     <xs:sequence>
       <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
@@ -67,6 +81,16 @@
   <xs:complexType name="validateSessionTokenResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getOpenStackToken">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getOpenStackTokenResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getSessionToken">

@@ -33,6 +33,42 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,16 +88,19 @@
   <ItemGroup>
     <Compile Include="File\FileDescription.cs" />
     <Compile Include="File\FileIdentifier.cs" />
-    <Compile Include="File\GenericFileStorageCM.cs" />
+    <Compile Include="File\GenericFileStorageCF.cs" />
     <Compile Include="File\GenericFileStorage.cs" />
+    <Compile Include="File\GenericFileStorageCM.cs" />
     <Compile Include="File\StorageType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\CF.Gss\Reference.cs">
+    <Compile Include="Service References\CF.Gss\Reference.cs" />
+    <Compile Include="Service References\CF.Gss\Reference1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\CM.Gss\Reference.cs">
+    <Compile Include="Service References\CM.Gss\Reference.cs" />
+    <Compile Include="Service References\CM.Gss\Reference1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -76,80 +115,38 @@
     <None Include="Service References\CF.Gss\FileUtilities.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CF.Gss\GssInteropClass.CF.Gss.containsFileResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CF.Gss\GssInteropClass.CF.Gss.createFolderResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CF.Gss\GssInteropClass.CF.Gss.deleteFolderResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CF.Gss\GssInteropClass.CF.Gss.getResourceInformationResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CF.Gss\GssInteropClass.CF.Gss.listFilesMinimalResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CF.Gss\GssInteropClass.CF.Gss.listFilesResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CF.Gss\GssInteropClass.CF.Gss.resourceInformation.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
+    <None Include="Service References\CF.Gss\GssInteropClass.CF.Gss.containsFileResponse.datasource" />
+    <None Include="Service References\CF.Gss\GssInteropClass.CF.Gss.createFolderResponse.datasource" />
+    <None Include="Service References\CF.Gss\GssInteropClass.CF.Gss.deleteFolderResponse.datasource" />
+    <None Include="Service References\CF.Gss\GssInteropClass.CF.Gss.getResourceInformationResponse.datasource" />
+    <None Include="Service References\CF.Gss\GssInteropClass.CF.Gss.listFilesMinimalResponse.datasource" />
+    <None Include="Service References\CF.Gss\GssInteropClass.CF.Gss.listFilesResponse.datasource" />
+    <None Include="Service References\CF.Gss\GssInteropClass.CF.Gss.resourceInformation.datasource" />
     <None Include="Service References\CM.Gss\FileUtilities.wsdl" />
     <None Include="Service References\CM.Gss\FileUtilities.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\CM.Gss\GssInteropClass.CM.Gss.containsFileResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CM.Gss\GssInteropClass.CM.Gss.createFolderResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CM.Gss\GssInteropClass.CM.Gss.deleteFolderResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CM.Gss\GssInteropClass.CM.Gss.getResourceInformationResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CM.Gss\GssInteropClass.CM.Gss.listFilesMinimalResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CM.Gss\GssInteropClass.CM.Gss.listFilesResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\CM.Gss\GssInteropClass.CM.Gss.resourceInformation.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
+    <None Include="Service References\CM.Gss\GssInteropClass.CM.Gss.containsFileResponse.datasource" />
+    <None Include="Service References\CM.Gss\GssInteropClass.CM.Gss.createFolderResponse.datasource" />
+    <None Include="Service References\CM.Gss\GssInteropClass.CM.Gss.deleteFolderResponse.datasource" />
+    <None Include="Service References\CM.Gss\GssInteropClass.CM.Gss.getResourceInformationResponse.datasource" />
+    <None Include="Service References\CM.Gss\GssInteropClass.CM.Gss.listFilesMinimalResponse.datasource" />
+    <None Include="Service References\CM.Gss\GssInteropClass.CM.Gss.listFilesResponse.datasource" />
+    <None Include="Service References\CM.Gss\GssInteropClass.CM.Gss.resourceInformation.datasource" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\CF.Gss\" />
-    <WCFMetadataStorage Include="Service References\CM.Gss\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\CF.Gss\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\CF.Gss\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\CF.Gss\Reference.svcmap">
+    <Content Include="Service References\CF.Gss\configuration.svcinfo" />
+    <Content Include="Service References\CF.Gss\configuration91.svcinfo" />
+    <Content Include="Service References\CF.Gss\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\CM.Gss\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\CM.Gss\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\CM.Gss\Reference.svcmap">
+      <LastGenOutput>Reference1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Service References\CM.Gss\configuration.svcinfo" />
+    <Content Include="Service References\CM.Gss\configuration91.svcinfo" />
+    <Content Include="Service References\CM.Gss\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+      <LastGenOutput>Reference1.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

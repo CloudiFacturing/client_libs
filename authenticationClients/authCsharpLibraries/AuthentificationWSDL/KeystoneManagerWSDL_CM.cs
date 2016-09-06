@@ -7,27 +7,30 @@ using System.Threading.Tasks;
 
 namespace AuthentificationWSDL.CMAuth
 {
-    public class KeystoneManagerWSDL_CM
+    public class KeystoneManagerWSDL_CM : KeystoneManagerWSDL
     {
         #region constant variables
-        public const string KEYSTONE_PROJECT = "caxman";
+        public override string KEYSTONE_PROJECT { get { return "caxman"; } }
         #endregion
 
         private AuthentificationWSDL.CMAuth.AuthManager client = null;
 
-        private string project;
-        public string Project
+        public override Projects Project
+        {
+            get { return Projects.CAxMan; }
+        }
+
+        private string projectName;
+        public override string ProjectName
         {
             get
             {
-                return this.client.getProject(this.TokenId);
+                return this.HasToken ? this.client.getProject(this.TokenId) : this.projectName;
             }
         }
 
-
-        public string Password { get; private set; }
-
-        public bool IsValid
+        
+        public override bool IsValid
         {
             get
             {
@@ -35,30 +38,22 @@ namespace AuthentificationWSDL.CMAuth
             }
         }
 
-
-        /// <summary>
-        /// Token ID
-        /// </summary>
-        public string TokenId
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Username
-        /// </summary>
-        private string username = string.Empty;
-        public string Username
+        public override bool HasToken
         {
             get
             {
-                return this.username;
+                return this.TokenId != null;
             }
-            set { this.username = value; }
         }
 
-
+        public override string KeystoneManagerURI
+        {
+            get
+            {
+                return this.client.Url;
+            }
+        }
+        
         /// <summary>
         /// Manager for the Keystone authentification
         /// </summary>
@@ -66,14 +61,14 @@ namespace AuthentificationWSDL.CMAuth
         internal KeystoneManagerWSDL_CM(string project)
         {
             if (this.client == null) this.client = new AuthManager();
-            
+
             if (project == null)
             {
-                this.project = KeystoneManagerWSDL_CM.KEYSTONE_PROJECT;
+                this.projectName = this.KEYSTONE_PROJECT;
             }
             else
             {
-                this.project = project;
+                this.projectName = project;
             }
         }
 
@@ -87,10 +82,20 @@ namespace AuthentificationWSDL.CMAuth
         public KeystoneManagerWSDL_CM(string username, string password, string project)
             : this(project)
         {
-            this.Username = username;
-            this.Password = password;
+            if (project != null)
+            {
+                this.Username = username;
+                this.Password = password;
 
-            this.TokenId = this.client.getSessionToken(this.Username, this.Password, this.project);
+                try
+                {
+                    this.TokenId = this.client.getSessionToken(this.Username, this.Password, this.projectName);
+                }
+                catch (Exception)
+                {
+                    this.TokenId = null;
+                }
+            }
         }
 
         /// <summary>
@@ -113,17 +118,9 @@ namespace AuthentificationWSDL.CMAuth
         /// Check if the KSM is available to give a token
         /// </summary>
         /// <returns></returns>
-        public bool IsServerAvailable()
+        public override bool IsServerAvailable
         {
-            try
-            {
-                this.client.validateSessionToken(this.TokenId);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            get { return KeystoneManagerWSDL.isServerAvailable; }
         }
 
     }

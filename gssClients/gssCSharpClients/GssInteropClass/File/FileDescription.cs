@@ -13,8 +13,28 @@ namespace GssInteropClass.File
         private FileIdentifier id;
         private String type;
 
-        public string VisualName { get { return this.visualName; } }
+        public string VisualName
+        {
+            get
+            {
+                return System.Web.HttpUtility.UrlDecode(this.visualName);
+            }
+        }
 
+        public string Type
+        {
+            get { return this.type; }
+        }
+
+        public bool IsFile
+        {
+            get
+            {
+                if (this.type.ToLower() != "folder") return true;
+
+                return false;
+            }
+        }
 
         public FileDescription(String visualName, String uniqueName, FileIdentifier id, String type)
         {
@@ -24,10 +44,14 @@ namespace GssInteropClass.File
             this.type = type;
         }
 
+
+        /// <summary>
+        /// Empty constructor
+        /// </summary>
         public FileDescription() { }
 
 
-        
+
         /// <summary>
         /// return the visualName
         /// </summary>

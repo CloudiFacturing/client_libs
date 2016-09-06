@@ -7,35 +7,40 @@ using System.Threading.Tasks;
 
 namespace AuthentificationWSDL.CFAuth
 {
-    public class KeystoneManagerWSDL_CF
+    public class KeystoneManagerWSDL_CF : KeystoneManagerWSDL
     {
         #region constant variables
-        public const string KEYSTONE_PROJECT = "cloudflow";
+        public override string KEYSTONE_PROJECT { get { return "cloudflow"; } }
         #endregion
 
         private AuthentificationWSDL.CFAuth.AuthManager client = null;
 
-        private string project;
-        public string Project
+        public override Projects Project
+        {
+            get { return Projects.CAxMan; }
+        }
+
+        private string projectName;
+        public override string ProjectName
         {
             get
             {
-                return this.client.getProject(this.TokenId);
+                return this.HasToken ? this.client.getProject(this.TokenId) : this.projectName;
             }
         }
 
 
-        public string Password { get; private set; }
-
-        public bool IsValid
+        public override bool IsValid
         {
             get
             {
+                if (this.TokenId == null) return false;
+
                 return this.client.validateSessionToken(this.TokenId);
             }
         }
 
-        public bool HasToken
+        public override bool HasToken
         {
             get
             {
@@ -43,29 +48,14 @@ namespace AuthentificationWSDL.CFAuth
             }
         }
 
-
-        /// <summary>
-        /// Token ID
-        /// </summary>
-        public string TokenId
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Username
-        /// </summary>
-        private string username = string.Empty;
-        public string Username
+        public override string KeystoneManagerURI
         {
             get
             {
-                return this.username;
+                return this.client.Url;
             }
-            set { this.username = value; }
         }
-
+        
         /// <summary>
         /// Manager for the Keystone authentification
         /// </summary>
@@ -76,11 +66,11 @@ namespace AuthentificationWSDL.CFAuth
 
             if (project == null)
             {
-                this.project = KeystoneManagerWSDL_CF.KEYSTONE_PROJECT;
+                this.projectName = this.KEYSTONE_PROJECT;
             }
             else
             {
-                this.project = project;
+                this.projectName = project;
             }
         }
 
@@ -97,7 +87,14 @@ namespace AuthentificationWSDL.CFAuth
             this.Username = username;
             this.Password = password;
 
-            this.TokenId = this.client.getSessionToken(this.Username, this.Password, this.project);
+            try
+            {
+                this.TokenId = this.client.getSessionToken(this.Username, this.Password, this.projectName);
+            }
+            catch (Exception)
+            {
+                this.TokenId = null;
+            }
         }
 
         /// <summary>
@@ -106,7 +103,7 @@ namespace AuthentificationWSDL.CFAuth
         /// <param name="webAddress">Web Service Server address</param>
         /// <param name="password">Password use to connect</param>
         /// <param name="project">Web Service tenant name</param>
-        public KeystoneManagerWSDL_CF(string tokenId, string project = null)
+        public KeystoneManagerWSDL_CF(string tokenId, string project)
             : this(project)
         {
 
@@ -120,17 +117,9 @@ namespace AuthentificationWSDL.CFAuth
         /// Check if the KSM is available to give a token
         /// </summary>
         /// <returns></returns>
-        public bool IsServerAvailable()
+        public override bool IsServerAvailable
         {
-            try
-            {
-                this.client.validateSessionToken(this.TokenId);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            get { return KeystoneManagerWSDL.isServerAvailable; }
         }
 
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Results>
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://api.caxman.eu/sintef/infrastructure/authManager/AuthManager?xsd=1" filename="AuthManager.xsd" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="https://api.caxman.eu/sintef/infrastructure/authManager/AuthManager?wsdl" filename="AuthManager.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="https://api.caxman.eu/sintef/auth/authManager/AuthManager?xsd=1" filename="AuthManager.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="https://api.caxman.eu/sintef/auth/authManager/AuthManager?wsdl" filename="AuthManager.wsdl" />
   </Results>
 </DiscoveryClientResultsFile>
