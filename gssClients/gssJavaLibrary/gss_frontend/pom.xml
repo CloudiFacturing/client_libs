@@ -32,10 +32,10 @@
                         </goals>
                         <configuration>
                             <wsdlUrls>
-                                <wsdlUrl>https://api.caxman.eu/sintef/infrastructure/gss-0.1/FileUtilities?wsdl</wsdlUrl>
+                                <wsdlUrl>https://caxman.clesgo.net/sintef/infrastructure/gss-0.1/FileUtilities?wsdl</wsdlUrl>
                             </wsdlUrls>
                             <packageName>no.sintef.gss.ws</packageName>
-                            <wsdlLocation>https://api.caxman.eu/sintef/infrastructure/gss-0.1/FileUtilities?wsdl</wsdlLocation>
+                            <wsdlLocation>https://caxman.clesgo.net/sintef/infrastructure/gss-0.1/FileUtilities?wsdl</wsdlLocation>
                             <staleFile>${project.build.directory}/jaxws/stale/FileUtilities.stale</staleFile>
                         </configuration>
                         <id>wsimport-generate-FileUtilities</id>

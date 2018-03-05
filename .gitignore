@@ -192,3 +192,4 @@ gssClients/gssCSharpClients/GssInteropClass/bin/Debug/GssInteropClass.pdb
 gssClients/gssCSharpClients/GssInteropClass/obj/Debug/GssInteropClass.csproj.FileListAbsolute.txt
 gssClients/gssCSharpClients/GSS_TestApp/bin/Debug/AuthentificationWSDL.dll
 gssClients/gssCSharpClients/GSS_TestApp/obj/Debug/GSS_TestApp.csproj.FileListAbsolute.txt
+/gssClients/gssJavaLibrary/gss_frontend/target/
