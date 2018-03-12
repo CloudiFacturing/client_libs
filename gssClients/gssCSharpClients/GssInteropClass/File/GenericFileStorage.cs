@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
-using System.Threading;
 using System.IO.Compression;
 
 namespace GssInteropClass.File
@@ -219,7 +213,7 @@ namespace GssInteropClass.File
                 }
             }
 
-            GenericFileStorage.deleteFile(filename);
+            //GenericFileStorage.deleteFile(filename);
 
             return zippedFilename;
         }

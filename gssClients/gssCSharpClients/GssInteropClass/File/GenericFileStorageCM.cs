@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Net;
 using System.Threading;
-using System.IO.Compression;
 using GssInteropClass.CM.Gss;
 
 namespace GssInteropClass.File
@@ -48,12 +46,7 @@ namespace GssInteropClass.File
                             this.filePrefix = "plm://";
                             break;
                         case StorageType.SWIFT:
-                            this.filePrefix = string.Format("swift://{0}/{1}/", this.ProjectFolder, this.Username);
-                            break;
-                        case StorageType.FILE: //OLD system > tranform to swift
-                        default:
-                            //this.filePrefix = "file://" + this.Username + "/"; //obsolete
-                            this.filePrefix = string.Format("swift://{0}/{1}/file/", this.ProjectFolder, this.Username);
+                            this.filePrefix = $"swift://{this.ProjectFolder}/{this.Username}/";
                             break;
                     }
                 }
@@ -113,29 +106,21 @@ namespace GssInteropClass.File
             {
                 //bool test = this.fileUtils.containsFile(this.FilePrefix, this.SessionToken);
 
-                if (this.Type != StorageType.FILE ||
-                    this.fileUtils.containsFile(this.FilePrefix, this.SessionToken))
+                if (this.fileUtils.containsFile(this.FilePrefix, this.SessionToken))
                 {
                     return;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.Out.WriteLine(ex);
+            }
 
-            string filePrefix = string.Format("swift://{0}/", this.ProjectFolder);
-
+            string filePrefix = $"swift://{this.ProjectFolder}/";
             var rootFilesAndFolders = this.GetFileDescriptions(filePrefix, "");
-
-            if (rootFilesAndFolders.Where(fd => fd.getVisualName() == this.Username).Count() == 0)
-            {
-                this.CreateFolder(filePrefix, this.Username);
-            }
-
-            var userFilesAndFolders = this.GetFileDescriptions(filePrefix, this.Username);
-
-            if (userFilesAndFolders.Where(fd => fd.getVisualName() == "file").Count() == 0)
-            {
-                this.CreateFolder(filePrefix + this.Username + "/", "file");
-            }
+            if (rootFilesAndFolders.Any(fd => fd.getVisualName() == this.Username)) return;
+            
+            this.CreateFolder(filePrefix, this.Username);
         }
 
         #endregion
@@ -255,7 +240,7 @@ namespace GssInteropClass.File
         /// <returns></returns>
         public override FileDescription CreateFolder(string prefix, string folderName)
         {
-            string serverFolderName = prefix + folderName.Trim('/') + "/";
+            string serverFolderName = prefix + folderName.Trim('/');
             var ri = fileUtils.createFolder(serverFolderName, this.SessionToken);
 
             return new FileDescription(ri.visualName, ri.uniqueName, new FileIdentifier(""), ri.type);
@@ -315,11 +300,10 @@ namespace GssInteropClass.File
 
             if (distantPath.StartsWith(this.FilePrefix)) distantPath = distantPath.Substring(FilePrefix.Length);
 
-            string cloudFolderEncoded = System.Web.HttpUtility.UrlEncode(distantPath.Trim('/'));
+            string cloudFolderEncoded = distantPath == "" ? "" : System.Web.HttpUtility.UrlEncode(distantPath.Trim('/')) + "/";
             string cloudFilenameEncoded = System.Web.HttpUtility.UrlEncode(cloudFilename);
 
-            if (this.Type == StorageType.FILE) serverFilename = this.FilePrefix + cloudFilenameEncoded;
-            else serverFilename = this.FilePrefix + cloudFolderEncoded + "/" + cloudFilenameEncoded;
+            serverFilename = this.FilePrefix + cloudFolderEncoded + cloudFilenameEncoded;
 
             this.DeleteFileIfExist(serverFilename);
 
@@ -405,9 +389,6 @@ namespace GssInteropClass.File
             // Now we may call the service a ssecond time to download it:
             switch (this.Type)
             {
-                case StorageType.FILE:
-                    fileId = file.getId().getUuid();
-                    break;
                 case StorageType.PLM:
                 case StorageType.SWIFT:
                 default:
@@ -639,13 +620,13 @@ namespace GssInteropClass.File
         {
             if (fileUtils.containsFile(fileId, this.SessionToken))
             {
-                Console.Out.Write(string.Format("{0} > {1}", DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"), "Delete the existing file > "));
+                //Console.Out.Write(string.Format("{0} > {1}", DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"), "Delete the existing file > "));
                 this.RemoveFile(fileId);
-                Console.Out.Write("OK");
+                //Console.Out.Write("OK");
             }
             else
             {
-                Console.Out.WriteLine(string.Format("{0} > {1}", DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"), "File not exists"));
+                //Console.Out.WriteLine(string.Format("{0} > {1}", DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"), "File not exists"));
             }
         }
 

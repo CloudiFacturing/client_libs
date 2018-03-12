@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="oHy2ARBuOG01sPnc1nNRnizNwEk=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="IjldwOfC8G8sSlu3nmXRgO9jO7A=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="FileUtilitiesPortBinding2">
+    <bindingConfiguration bindingType="basicHttpBinding" name="FileUtilitiesPortBinding1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>FileUtilitiesPortBinding2</serializedValue>
+          <serializedValue>FileUtilitiesPortBinding1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -110,10 +110,10 @@
         </property>
       </properties>
     </bindingConfiguration>
-    <bindingConfiguration bindingType="basicHttpBinding" name="FileUtilitiesPortBinding3">
+    <bindingConfiguration bindingType="basicHttpBinding" name="FileUtilitiesPortBinding2">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>FileUtilitiesPortBinding3</serializedValue>
+          <serializedValue>FileUtilitiesPortBinding2</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -221,10 +221,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="FileUtilitiesPort1" contract="CM.Gss.FileUtilities" bindingType="basicHttpBinding" address="https://api.caxman.eu/sintef/infrastructure/gss-0.1/FileUtilities" bindingConfiguration="FileUtilitiesPortBinding2">
+    <endpoint name="FileUtilitiesPort1" contract="CM.Gss.FileUtilities" bindingType="basicHttpBinding" address="https://caxman.clesgo.net/sintef/infrastructure/gss-0.1/FileUtilities" bindingConfiguration="FileUtilitiesPortBinding1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>https://api.caxman.eu:443/sintef/infrastructure/gss-0.1/FileUtilities</serializedValue>
+          <serializedValue>https://caxman.clesgo.net:443/sintef/infrastructure/gss-0.1/FileUtilities</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -233,7 +233,7 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>FileUtilitiesPortBinding2</serializedValue>
+          <serializedValue>FileUtilitiesPortBinding1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>CM.Gss.FileUtilities</serializedValue>

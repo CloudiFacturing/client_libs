@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace AuthentificationWSDL
 {
     public enum Projects
-    {
-        CloudFlow,
+    {        
         CAxMan
     }
 }
