@@ -28,21 +28,20 @@ namespace AuthentificationWSDL
 
 
         internal static bool isServerAvailable = false;
-        static private Thread KeystoneManagerServerTestThread = null;
+        private Thread keystoneManagerServerTestThread = null;
+        private static bool isThreadAlive = true;
 
         public KeystoneManagerWSDL()
         {
-            KeystoneManagerServerTestThread = new Thread(testServer);
-            KeystoneManagerServerTestThread.Start();
+            this.keystoneManagerServerTestThread = new Thread(testServer);
+            this.keystoneManagerServerTestThread.Start();
         }
 
-        
+
         public static KeystoneManagerWSDL GetKeystoneManagerWSDL(string projectName, string tokenId)
         {
             switch (KeystoneManagerWSDL.ParseProjectName(projectName))
             {
-                case Projects.CloudFlow:
-                    return new AuthentificationWSDL.CFAuth.KeystoneManagerWSDL_CF(tokenId, projectName);
                 case Projects.CAxMan:
                 default:
                     return new AuthentificationWSDL.CMAuth.KeystoneManagerWSDL_CM(tokenId, projectName);
@@ -53,8 +52,6 @@ namespace AuthentificationWSDL
         {
             switch (KeystoneManagerWSDL.ParseProjectName(projectName))
             {
-                case Projects.CloudFlow:
-                    return new AuthentificationWSDL.CFAuth.KeystoneManagerWSDL_CF(username, password, projectName);
                 case Projects.CAxMan:
                 default:
                     return new AuthentificationWSDL.CMAuth.KeystoneManagerWSDL_CM(username, password, projectName);
@@ -64,10 +61,6 @@ namespace AuthentificationWSDL
         public static Projects ParseProjectName(string projectName)
         {
             Projects project = Projects.CAxMan;
-            if (!Enum.TryParse(projectName, true, out project))
-            {
-                project = Projects.CloudFlow; //if the parse does not work, thats mean it is called by an older CloudFlow application
-            }
 
             return project;
         }
@@ -78,27 +71,47 @@ namespace AuthentificationWSDL
         /// <returns></returns>
         private void testServer()
         {
-            while (KeystoneManagerServerTestThread.ThreadState == ThreadState.Running)
+            Uri uriResult;
+            string url;
+            HttpWebRequest request;
+            HttpWebResponse response;
+
+            // Build the requests
+
+            while (true)
             {
-                ServicePointManager.ServerCertificateValidationCallback +=
-                            delegate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
-                            {
-                                return true;
-                            };
                 try
                 {
-                    Uri uriResult;
-
-                    string url = this.KeystoneManagerURI + "?wsdl";
+                    //Get the URL
+                    url = this.KeystoneManagerURI + "?wsdl";
                     Uri.TryCreate(url, UriKind.Absolute, out uriResult);
 
                     //Creating the HttpWebRequest
-                    HttpWebRequest request = WebRequest.Create(uriResult) as HttpWebRequest;
+                    request = WebRequest.Create(uriResult) as HttpWebRequest;
                     request.Timeout = 14000;
+
                     //Setting the Request method HEAD, you can also use GET too.
                     request.Method = "HEAD";
+
+                    //Set the Event for https encryption
+                    ServicePointManager.ServerCertificateValidationCallback +=
+                                delegate (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+                                {
+                                    return true;
+                                };
+                }
+                catch { continue; }
+                Thread.Sleep(1000);
+
+                break;
+            }
+
+            while (KeystoneManagerWSDL.isThreadAlive)
+            {
+                try
+                {
                     //Getting the Web Response.
-                    HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                    response = request.GetResponse() as HttpWebResponse;
                     //Set TRUE if the Status code == 200
                     response.Close();
                     KeystoneManagerWSDL.isServerAvailable = (response.StatusCode == HttpStatusCode.OK);
@@ -128,10 +141,7 @@ namespace AuthentificationWSDL
 
         public void Dispose()
         {
-            if (KeystoneManagerServerTestThread != null)
-            {
-                KeystoneManagerServerTestThread.Abort();
-            }
+            KeystoneManagerWSDL.isThreadAlive = false;            
         }
     }
 

@@ -2,7 +2,7 @@
 <definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://gss.sintef.no/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="FileUtilities" targetNamespace="http://gss.sintef.no/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <xsd:schema>
-      <xsd:import schemaLocation="https://api.caxman.eu:443/sintef/infrastructure/gss-0.1/FileUtilities?xsd=1" namespace="http://gss.sintef.no/" />
+      <xsd:import schemaLocation="https://caxman.clesgo.net:443/sintef/infrastructure/gss-0.1/FileUtilities?xsd=1" namespace="http://gss.sintef.no/" />
     </xsd:schema>
   </types>
   <message name="listFilesMinimal">
@@ -14,11 +14,23 @@
   <message name="IOException">
     <part name="fault" element="tns:IOException" />
   </message>
+  <message name="getDirectInteractionEndpoint">
+    <part name="parameters" element="tns:getDirectInteractionEndpoint" />
+  </message>
+  <message name="getDirectInteractionEndpointResponse">
+    <part name="parameters" element="tns:getDirectInteractionEndpointResponse" />
+  </message>
   <message name="createFolder">
     <part name="parameters" element="tns:createFolder" />
   </message>
   <message name="createFolderResponse">
     <part name="parameters" element="tns:createFolderResponse" />
+  </message>
+  <message name="containsFile">
+    <part name="parameters" element="tns:containsFile" />
+  </message>
+  <message name="containsFileResponse">
+    <part name="parameters" element="tns:containsFileResponse" />
   </message>
   <message name="deleteFolder">
     <part name="parameters" element="tns:deleteFolder" />
@@ -32,12 +44,6 @@
   <message name="getResourceInformationResponse">
     <part name="parameters" element="tns:getResourceInformationResponse" />
   </message>
-  <message name="containsFile">
-    <part name="parameters" element="tns:containsFile" />
-  </message>
-  <message name="containsFileResponse">
-    <part name="parameters" element="tns:containsFileResponse" />
-  </message>
   <message name="listFiles">
     <part name="parameters" element="tns:listFiles" />
   </message>
@@ -50,10 +56,20 @@
       <output wsam:Action="http://gss.sintef.no/FileUtilities/listFilesMinimalResponse" message="tns:listFilesMinimalResponse" />
       <fault wsam:Action="http://gss.sintef.no/FileUtilities/listFilesMinimal/Fault/IOException" name="IOException" message="tns:IOException" />
     </operation>
+    <operation name="getDirectInteractionEndpoint">
+      <input wsam:Action="http://gss.sintef.no/FileUtilities/getDirectInteractionEndpointRequest" message="tns:getDirectInteractionEndpoint" />
+      <output wsam:Action="http://gss.sintef.no/FileUtilities/getDirectInteractionEndpointResponse" message="tns:getDirectInteractionEndpointResponse" />
+      <fault wsam:Action="http://gss.sintef.no/FileUtilities/getDirectInteractionEndpoint/Fault/IOException" name="IOException" message="tns:IOException" />
+    </operation>
     <operation name="createFolder">
       <input wsam:Action="http://gss.sintef.no/FileUtilities/createFolderRequest" message="tns:createFolder" />
       <output wsam:Action="http://gss.sintef.no/FileUtilities/createFolderResponse" message="tns:createFolderResponse" />
       <fault wsam:Action="http://gss.sintef.no/FileUtilities/createFolder/Fault/IOException" name="IOException" message="tns:IOException" />
+    </operation>
+    <operation name="containsFile">
+      <input wsam:Action="http://gss.sintef.no/FileUtilities/containsFileRequest" message="tns:containsFile" />
+      <output wsam:Action="http://gss.sintef.no/FileUtilities/containsFileResponse" message="tns:containsFileResponse" />
+      <fault wsam:Action="http://gss.sintef.no/FileUtilities/containsFile/Fault/IOException" name="IOException" message="tns:IOException" />
     </operation>
     <operation name="deleteFolder">
       <input wsam:Action="http://gss.sintef.no/FileUtilities/deleteFolderRequest" message="tns:deleteFolder" />
@@ -64,11 +80,6 @@
       <input wsam:Action="http://gss.sintef.no/FileUtilities/getResourceInformationRequest" message="tns:getResourceInformation" />
       <output wsam:Action="http://gss.sintef.no/FileUtilities/getResourceInformationResponse" message="tns:getResourceInformationResponse" />
       <fault wsam:Action="http://gss.sintef.no/FileUtilities/getResourceInformation/Fault/IOException" name="IOException" message="tns:IOException" />
-    </operation>
-    <operation name="containsFile">
-      <input wsam:Action="http://gss.sintef.no/FileUtilities/containsFileRequest" message="tns:containsFile" />
-      <output wsam:Action="http://gss.sintef.no/FileUtilities/containsFileResponse" message="tns:containsFileResponse" />
-      <fault wsam:Action="http://gss.sintef.no/FileUtilities/containsFile/Fault/IOException" name="IOException" message="tns:IOException" />
     </operation>
     <operation name="listFiles">
       <input wsam:Action="http://gss.sintef.no/FileUtilities/listFilesRequest" message="tns:listFiles" />
@@ -90,7 +101,31 @@
         <soap:fault use="literal" name="IOException" namespace="" />
       </fault>
     </operation>
+    <operation name="getDirectInteractionEndpoint">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="IOException">
+        <soap:fault use="literal" name="IOException" namespace="" />
+      </fault>
+    </operation>
     <operation name="createFolder">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="IOException">
+        <soap:fault use="literal" name="IOException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="containsFile">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -115,18 +150,6 @@
       </fault>
     </operation>
     <operation name="getResourceInformation">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-      <fault name="IOException">
-        <soap:fault use="literal" name="IOException" namespace="" />
-      </fault>
-    </operation>
-    <operation name="containsFile">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -153,7 +176,7 @@
   </binding>
   <service name="FileUtilities">
     <port name="FileUtilitiesPort" binding="tns:FileUtilitiesPortBinding">
-      <soap:address location="https://api.caxman.eu:443/sintef/infrastructure/gss-0.1/FileUtilities" />
+      <soap:address location="https://caxman.clesgo.net:443/sintef/infrastructure/gss-0.1/FileUtilities" />
     </port>
   </service>
 </definitions>

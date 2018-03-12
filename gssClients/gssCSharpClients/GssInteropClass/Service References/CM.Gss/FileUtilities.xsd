@@ -7,6 +7,8 @@
   <xs:element name="createFolderResponse" type="tns:createFolderResponse" />
   <xs:element name="deleteFolder" type="tns:deleteFolder" />
   <xs:element name="deleteFolderResponse" type="tns:deleteFolderResponse" />
+  <xs:element name="getDirectInteractionEndpoint" type="tns:getDirectInteractionEndpoint" />
+  <xs:element name="getDirectInteractionEndpointResponse" type="tns:getDirectInteractionEndpointResponse" />
   <xs:element name="getResourceInformation" type="tns:getResourceInformation" />
   <xs:element name="getResourceInformationResponse" type="tns:getResourceInformationResponse" />
   <xs:element name="listFiles" type="tns:listFiles" />
@@ -57,17 +59,6 @@
       <xs:element minOccurs="0" name="message" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="listFiles">
-    <xs:sequence>
-      <xs:element minOccurs="0" form="qualified" name="fileID" type="xs:string" />
-      <xs:element minOccurs="0" form="qualified" name="session_id" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="listFilesResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:resourceInformation" />
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="listFilesMinimal">
     <xs:sequence>
       <xs:element minOccurs="0" form="qualified" name="fileID" type="xs:string" />
@@ -75,6 +66,17 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="listFilesMinimalResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:resourceInformation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listFiles">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="fileID" type="xs:string" />
+      <xs:element minOccurs="0" form="qualified" name="session_id" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listFilesResponse">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:resourceInformation" />
     </xs:sequence>
@@ -99,6 +101,23 @@
   <xs:complexType name="deleteFolderResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getDirectInteractionEndpoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="gssID" type="xs:string" />
+      <xs:element minOccurs="0" form="qualified" name="session_id" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getDirectInteractionEndpointResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:endpointInformation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="endpointInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="type" type="xs:string" />
+      <xs:element minOccurs="0" name="url" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="containsFile">

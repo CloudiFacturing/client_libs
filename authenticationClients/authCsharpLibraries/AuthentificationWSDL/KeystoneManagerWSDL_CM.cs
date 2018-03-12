@@ -34,7 +34,14 @@ namespace AuthentificationWSDL.CMAuth
         {
             get
             {
-                return this.client.validateSessionToken(this.TokenId);
+                try
+                {
+                    return this.client.validateSessionToken(this.TokenId);
+                }
+                catch
+                {
+                    return false;
+                }
             }
         }
 
@@ -91,7 +98,7 @@ namespace AuthentificationWSDL.CMAuth
                 {
                     this.TokenId = this.client.getSessionToken(this.Username, this.Password, this.projectName);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     this.TokenId = null;
                 }
@@ -111,7 +118,6 @@ namespace AuthentificationWSDL.CMAuth
             this.TokenId = tokenId;
 
             this.Username = this.client.getUsername(this.TokenId);
-
         }
 
         /// <summary>
