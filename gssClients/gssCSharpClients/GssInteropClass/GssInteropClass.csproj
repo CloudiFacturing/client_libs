@@ -116,7 +116,6 @@
   <ItemGroup>
     <Compile Include="File\FileDescription.cs" />
     <Compile Include="File\FileIdentifier.cs" />
-    <Compile Include="File\GenericFileStorage.cs" />
     <Compile Include="File\GenericFileStorageCM.cs" />
     <Compile Include="File\StorageType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

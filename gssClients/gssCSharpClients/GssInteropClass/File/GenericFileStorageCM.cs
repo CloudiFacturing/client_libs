@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Net;
@@ -9,32 +10,29 @@ using GssInteropClass.CM.Gss;
 
 namespace GssInteropClass.File
 {
-    public class GenericFileStorageCM : GenericFileStorage
+    public class GenericFileStorage
     {
         private Encoding fileEncoding = Encoding.Unicode;
 
         private int bufferSize = 1024;
-        public override int BufferSize { get { return this.bufferSize; } }
-
-        private string username = "";
-        public override string Username { get { return this.username; } }
-
+        public int BufferSize { get { return this.bufferSize; } }
+        
         private string sessionToken = "";
-        public override string SessionToken { get { return this.sessionToken; } }
+        public string SessionToken { get { return this.sessionToken; } }
 
         private StorageType type;
-        public override StorageType Type { get { return this.type; } }
+        public StorageType Type { get { return this.type; } }
 
         private string projectFolder = "";
-        public override string ProjectFolder { get { return this.projectFolder; } }
+        public string ProjectFolder { get { return this.projectFolder; } }
 
         private string currentFolder = "";
-        public override string CurrentFolder { get { return this.currentFolder; } }
+        public string CurrentFolder { get { return this.currentFolder; } }
 
         private FileUtilitiesClient fileUtils;
 
         private string filePrefix = string.Empty;
-        public override string FilePrefix
+        public string FilePrefix
         {
             get
             {
@@ -46,7 +44,7 @@ namespace GssInteropClass.File
                             this.filePrefix = "plm://";
                             break;
                         case StorageType.SWIFT:
-                            this.filePrefix = $"swift://{this.ProjectFolder}/{this.Username}/";
+                            this.filePrefix = $"swift://";
                             break;
                     }
                 }
@@ -57,79 +55,42 @@ namespace GssInteropClass.File
 
         #region Constructors
 
-        public GenericFileStorageCM(string username, string sessionToken, StorageType type, string projectFolder)
+        public GenericFileStorage(string sessionToken, StorageType type, string projectFolder)
         {
             this.bufferSize = 1024;
-
-            this.username = username;
+            
             this.sessionToken = sessionToken;
             this.type = type;
             this.projectFolder = projectFolder;
 
             this.fileUtils = new FileUtilitiesClient();
-
-
-            //In case of old FILE storage type, it will create the default folder
-            //in the good swift folder
-            this.createFileFolder();
         }
 
-        public GenericFileStorageCM(string username, string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName)
-            : this(username, sessionToken, type, projectFolder)
+        public GenericFileStorage(string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName)
+            : this(sessionToken, type, projectFolder)
         {
             this.fileUtils = new FileUtilitiesClient(endPointConfigurationName);
         }
 
-        public GenericFileStorageCM(string username, string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName, string remoteAccess)
-            : this(username, sessionToken, type, projectFolder)
+        public GenericFileStorage(string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName, string remoteAccess)
+            : this(sessionToken, type, projectFolder)
         {
             this.fileUtils = new FileUtilitiesClient(endPointConfigurationName, remoteAccess);
         }
 
-        public GenericFileStorageCM(string username, string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName, System.ServiceModel.EndpointAddress remoteAccess)
-            : this(username, sessionToken, type, projectFolder)
+        public GenericFileStorage(string sessionToken, StorageType type, string projectFolder, string endPointConfigurationName, System.ServiceModel.EndpointAddress remoteAccess)
+            : this(sessionToken, type, projectFolder)
         {
             this.fileUtils = new FileUtilitiesClient(endPointConfigurationName, remoteAccess);
         }
 
         #endregion
-
-        #region Interop
-
-        /// <summary>
-        /// FILE type interop: 
-        /// Create the default folder file 
-        /// </summary>
-        private void createFileFolder()
-        {
-            try
-            {
-                //bool test = this.fileUtils.containsFile(this.FilePrefix, this.SessionToken);
-
-                if (this.fileUtils.containsFile(this.FilePrefix, this.SessionToken))
-                {
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.Out.WriteLine(ex);
-            }
-
-            string filePrefix = $"swift://{this.ProjectFolder}/";
-            var rootFilesAndFolders = this.GetFileDescriptions(filePrefix, "");
-            if (rootFilesAndFolders.Any(fd => fd.getVisualName() == this.Username)) return;
-            
-            this.CreateFolder(filePrefix, this.Username);
-        }
-
-        #endregion
-
+        
         /// <summary>
         /// Get all file descriptions from the current "folder"
         /// </summary>
         /// <returns></returns>
-        public override List<FileDescription> GetFileDescriptions()
+        public List<FileDescription> GetFileDescriptions()
         {
             return this.GetFileDescriptions("");
         }
@@ -139,7 +100,7 @@ namespace GssInteropClass.File
         /// </summary>
         /// <param name="folderName">Folder name (sample: "work/test1/")</param>
         /// <returns></returns>
-        public override List<FileDescription> GetFileDescriptions(string folderName)
+        public List<FileDescription> GetFileDescriptions(string folderName)
         {
             if (folderName.StartsWith(filePrefix))
             {
@@ -157,7 +118,7 @@ namespace GssInteropClass.File
         /// <param name="prefix">Forced prefix (sample: "swift://caxman/user/")</param>       
         /// <param name="folderName">Folder name (sample: "work/test1/")</param>
         /// <returns></returns>
-        public override List<FileDescription> GetFileDescriptions(string prefix, string folderName)
+        public List<FileDescription> GetFileDescriptions(string prefix, string folderName)
         {
             resourceInformation[] ressourcesInformationList = fileUtils.listFilesMinimal(prefix + folderName, this.SessionToken);
 
@@ -180,7 +141,7 @@ namespace GssInteropClass.File
         /// </summary>
         /// <param name="path">PLM path</param>
         /// <returns></returns>
-        public override List<FileDescription> GetPlmFileDescriptions(string path)
+        public List<FileDescription> GetPlmFileDescriptions(string path)
         {
             string folderFullPath = this.FilePrefix + path.TrimStart('/');
 
@@ -204,7 +165,7 @@ namespace GssInteropClass.File
         /// </summary>
         /// <param name="fd">File description</param>
         /// <returns></returns>
-        public override bool IsFileExist(FileDescription fd)
+        public bool IsFileExist(FileDescription fd)
         {
             return this.IsFileExist(fd.getUniqueName());
         }
@@ -214,7 +175,7 @@ namespace GssInteropClass.File
         /// </summary>
         /// <param name="cloudFilePath">GSS file address</param>
         /// <returns></returns>
-        public override bool IsFileExist(string cloudFilePath)
+        public bool IsFileExist(string cloudFilePath)
         {
             return fileUtils.containsFile(cloudFilePath, this.SessionToken);
         }
@@ -224,7 +185,7 @@ namespace GssInteropClass.File
         /// </summary>
         /// <param name="folderName"></param>
         /// <returns></returns>
-        public override FileDescription CreateFolder(string folderName)
+        public FileDescription CreateFolder(string folderName)
         {
             string serverFolderName = this.FilePrefix + folderName.Trim('/') + "/";
             var ri = fileUtils.createFolder(serverFolderName, this.SessionToken);
@@ -238,7 +199,7 @@ namespace GssInteropClass.File
         /// <param name="prefix">New gss space path</param>
         /// <param name="folderName"></param>
         /// <returns></returns>
-        public override FileDescription CreateFolder(string prefix, string folderName)
+        public FileDescription CreateFolder(string prefix, string folderName)
         {
             string serverFolderName = prefix + folderName.Trim('/');
             var ri = fileUtils.createFolder(serverFolderName, this.SessionToken);
@@ -251,7 +212,7 @@ namespace GssInteropClass.File
         /// </summary>
         /// <param name="folderName"></param>
         /// <returns></returns>
-        public override bool DeleteFolder(string folderName)
+        public bool DeleteFolder(string folderName)
         {
             string serverFolderName = this.FilePrefix + folderName.Trim('/') + "/";
             return fileUtils.deleteFolder(serverFolderName, this.SessionToken);
@@ -263,7 +224,7 @@ namespace GssInteropClass.File
         /// <param name="localFilePath">Local file path</param>
         /// <param name="compress">set true to compress the file</param>
         /// <returns></returns>
-        public override FileDescription UploadFile(string localFilePath, bool compress = true)
+        public FileDescription UploadFile(string localFilePath, bool compress = true)
         {
             return UploadFile(localFilePath, Path.GetFileName(localFilePath), "", compress);
         }
@@ -275,7 +236,7 @@ namespace GssInteropClass.File
         /// <param name="distantPath">Cloud filename. For PLM: [folder]/[filename]</param>
         /// <param name="compress">set true to compress the file</param>
         /// <returns></returns>
-        public override FileDescription UploadFile(string localFilePath, string distantPath, bool compress = true)
+        public FileDescription UploadFile(string localFilePath, string distantPath, bool compress = true)
         {
             return UploadFile(localFilePath, Path.GetFileName(localFilePath), distantPath, compress);
         }
@@ -288,7 +249,7 @@ namespace GssInteropClass.File
         /// <param name="distantPath">path folder</param>
         /// <param name="compress">set true to compress the file</param>
         /// <returns></returns>
-        public override FileDescription UploadFile(string localFilePath, string cloudFilename, string distantPath, bool compress = true)
+        public FileDescription UploadFile(string localFilePath, string cloudFilename, string distantPath, bool compress = true)
         {
             string serverFilename;
 
@@ -382,11 +343,11 @@ namespace GssInteropClass.File
         /// <param name="filename">Force a local filename</param>
         /// <param name="autoUnzip">Unzip the file if the extension is *.zip</param>
         /// <returns></returns>
-        public override string DownloadFile(FileDescription file, string folderPath, string filename = "", bool autoUnzip = true)
+        public string DownloadFile(FileDescription file, string folderPath, string filename = "", bool autoUnzip = true)
         {
             string fileId = "";
 
-            // Now we may call the service a ssecond time to download it:
+            // Now we may call the service a second time to download it:
             switch (this.Type)
             {
                 case StorageType.PLM:
@@ -407,19 +368,20 @@ namespace GssInteropClass.File
         /// <param name="filename">Force a local filename</param>
         /// <param name="autoUnzip">Unzip the file if the extension is *.zip</param>
         /// <returns></returns>
-        public override string DownloadFile(string fileId, string folderPath, string filename = "", bool autoUnzip = true)
+        public string DownloadFile(string fileId, string folderPath, string filename = "", bool autoUnzip = true)
         {
             if (!fileUtils.containsFile(fileId, this.SessionToken)) throw new Exception(string.Format("File \"{0}\" does not exist on the GSS", fileId));
 
             var resourceInfo = fileUtils.getResourceInformation(fileId, this.SessionToken);
             var readDescription = resourceInfo.readDescription;
 
+            if (!readDescription.supported) throw new Exception("Read operation not allowed!");
+
             HttpWebRequest downloadRequest = (HttpWebRequest)WebRequest.Create(readDescription.url);
-            // We set the parameters as described by the service
-            downloadRequest.Method = readDescription.httpMethod;
-            downloadRequest.Headers[readDescription.sessionTokenField] = this.SessionToken;
-            downloadRequest.Timeout = System.Threading.Timeout.Infinite;
-            downloadRequest.KeepAlive = true;
+            //// We set the parameters as described by the service
+            //downloadRequest.Method = readDescription.httpMethod;
+            //downloadRequest.Timeout = System.Threading.Timeout.Infinite;
+            //downloadRequest.KeepAlive = true;
 
             if (readDescription.headers != null)
             {
@@ -433,7 +395,7 @@ namespace GssInteropClass.File
             HttpWebResponse responseFromDownload = (HttpWebResponse)downloadRequest.GetResponse();
             if (responseFromDownload.StatusCode != HttpStatusCode.OK && responseFromDownload.StatusCode != HttpStatusCode.Accepted)
             {
-                throw new Exception("Wrong statuscode returned");
+                throw new Exception("Wrong status code returned");
             }
 
             string localFilePath = folderPath.TrimEnd('\\') + @"\";
@@ -474,7 +436,7 @@ namespace GssInteropClass.File
         /// <param name="file">File description</param>
         /// <param name="outBinaries">Byte array with the file datas</param>
         /// <returns></returns>
-        public override string DownloadFile(FileDescription file, out byte[] outBinaries)
+        public string DownloadFile(FileDescription file, out byte[] outBinaries)
         {
             return this.DownloadFile(file.getId().getUuid(), out outBinaries);
         }
@@ -485,7 +447,7 @@ namespace GssInteropClass.File
         /// <param name="fileId">GSS file address</param>
         /// <param name="outBinaries">Byte array with the file datas</param>
         /// <returns></returns>
-        public override string DownloadFile(string fileId, out byte[] outBinaries)
+        public string DownloadFile(string fileId, out byte[] outBinaries)
         {
             if (!fileUtils.containsFile(fileId, this.SessionToken)) throw new Exception(string.Format("File \"{0}\" does not exist on the GSS", fileId));
 
@@ -495,7 +457,6 @@ namespace GssInteropClass.File
             HttpWebRequest downloadRequest = (HttpWebRequest)WebRequest.Create(readDescription.url);
             // We set the parameters as described by the service
             downloadRequest.Method = readDescription.httpMethod;
-            downloadRequest.Headers[readDescription.sessionTokenField] = this.SessionToken;
             downloadRequest.Timeout = System.Threading.Timeout.Infinite;
             downloadRequest.KeepAlive = true;
 
@@ -535,7 +496,7 @@ namespace GssInteropClass.File
         /// Remove a file asynchronously
         /// </summary>
         /// <param name="file">File description</param>
-        public override void RemoveFileAsync(FileDescription file)
+        public void RemoveFileAsync(FileDescription file)
         {
             try
             {
@@ -548,7 +509,7 @@ namespace GssInteropClass.File
         /// Remove a file asynchronously
         /// </summary>
         /// <param name="fileId">GSS file address</param>
-        public override void RemoveFileAsync(string fileId)
+        public void RemoveFileAsync(string fileId)
         {
             Thread th = new Thread(() => this.RemoveFile(fileId, true));
             try
@@ -562,7 +523,7 @@ namespace GssInteropClass.File
         /// Remove a file
         /// </summary>
         /// <param name="file">File description</param>
-        public override void RemoveFile(FileDescription file, bool blockExceptions = false)
+        public void RemoveFile(FileDescription file, bool blockExceptions = false)
         {
             this.RemoveFile(file.getId().getUuid(), blockExceptions);
         }
@@ -572,7 +533,7 @@ namespace GssInteropClass.File
         /// </summary>
         /// <param name="fileId">GSS file address</param>
         /// <param name="blockExceptions">True to not throw any exception</param>
-        public override void RemoveFile(string fileId, bool blockExceptions = false)
+        public void RemoveFile(string fileId, bool blockExceptions = false)
         {
             try
             {
@@ -616,7 +577,7 @@ namespace GssInteropClass.File
         /// Delete a file on the GSS if it exists
         /// </summary>
         /// <param name="fileId">GSS file address</param>
-        public override void DeleteFileIfExist(string fileId)
+        public void DeleteFileIfExist(string fileId)
         {
             if (fileUtils.containsFile(fileId, this.SessionToken))
             {
@@ -629,6 +590,117 @@ namespace GssInteropClass.File
                 //Console.Out.WriteLine(string.Format("{0} > {1}", DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"), "File not exists"));
             }
         }
+
+
+        #region Static methods
+
+        /// <summary>
+        /// Zip a file
+        /// </summary>
+        /// <param name="filename">Local file path</param>
+        /// <returns>Local zip file path</returns>
+        public static string ZipFile(string filename)
+        {
+            string zippedFilename = filename + ".zip";
+
+            GenericFileStorage.deleteFile(zippedFilename);
+
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var archive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
+                {
+                    var demoFile = archive.CreateEntryFromFile(filename, Path.GetFileName(filename));
+                }
+
+                using (var fileStream = new FileStream(zippedFilename, FileMode.Create))
+                {
+                    memoryStream.Seek(0, SeekOrigin.Begin);
+                    memoryStream.CopyTo(fileStream);
+                }
+            }
+
+            //GenericFileStorage.deleteFile(filename);
+
+            return zippedFilename;
+        }
+
+        /// <summary>
+        /// Unzip a file
+        /// </summary>
+        /// <param name="filePath">Zip file path</param>
+        /// <returns>Unzip file path</returns>
+        public static string UnzipFile(string filePath)
+        {
+            string resultFilename = "";
+
+            ZipArchive archive = System.IO.Compression.ZipFile.OpenRead(filePath);
+            var zippedFile = archive.GetEntry(Path.GetFileNameWithoutExtension(filePath));
+
+            resultFilename = Path.ChangeExtension(filePath, "").TrimEnd('.');
+
+            if (System.IO.File.Exists(resultFilename)) System.IO.File.Delete(resultFilename);
+
+            zippedFile.ExtractToFile(resultFilename);
+
+            archive.Dispose();
+
+            GenericFileStorage.deleteFile(filePath);
+
+            return resultFilename;
+        }
+
+
+        /// <summary>
+        /// Delete a local file if it exists
+        /// </summary>
+        /// <param name="filePath">Local file path</param>
+        private static void deleteFile(string filePath)
+        {
+            try
+            {
+                if (System.IO.File.Exists(filePath)) System.IO.File.Delete(filePath);
+
+            }
+            catch { }
+        }
+
+        /// <summary>
+        /// Get the GSS file address after zip or unzip
+        /// </summary>
+        /// <param name="gssFileId">GSS file address</param>
+        /// <param name="newExtension">new GSS file extension</param>
+        /// <param name="hasToRemoveZip">Remove the zip extension ?</param>
+        /// <returns>GSS file address</returns>
+        public static string GetResultFilename(string gssFileId, string newExtension, bool hasToRemoveZip = false)
+        {
+            string resultGssId = gssFileId;
+            bool isZipped = false;
+
+            //Remove .zip extension
+            if (Path.GetExtension(gssFileId) == ".zip")
+            {
+                resultGssId = Path.ChangeExtension(resultGssId, "").TrimEnd('.');
+                isZipped = !hasToRemoveZip;
+            }
+
+            resultGssId = Path.ChangeExtension(resultGssId, newExtension);
+
+            if (isZipped) resultGssId += ".zip";
+
+            return resultGssId;
+        }
+
+        /// <summary>
+        /// Encode the URL (transform the non URL compatible characters on the input string)
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static string UrlEncode(string source)
+        {
+            return System.Web.HttpUtility.UrlEncode(source);
+        }
+
+        #endregion
 
     }
 }
