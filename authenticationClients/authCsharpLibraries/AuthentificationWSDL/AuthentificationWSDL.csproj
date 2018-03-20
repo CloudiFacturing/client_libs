@@ -141,6 +141,9 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Web References\CMAuth\tokenInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="README.txt" />
@@ -149,10 +152,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="https://api.caxman.eu/sintef/auth/authManager/AuthManager%3fwsdl">
+    <WebReferenceUrl Include="https://caxman.clesgo.net/sintef/auth/authManager/AuthManager%3fwsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\CMAuth\</RelPath>
-      <UpdateFromURL>https://api.caxman.eu/sintef/auth/authManager/AuthManager%3fwsdl</UpdateFromURL>
+      <UpdateFromURL>https://caxman.clesgo.net/sintef/auth/authManager/AuthManager%3fwsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -160,6 +163,9 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>AuthentificationWSDL_CMAuth_AuthManager</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

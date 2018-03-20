@@ -5,6 +5,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using GssInteropClass.CM.Gss;
 
@@ -377,11 +378,13 @@ namespace GssInteropClass.File
 
             if (!readDescription.supported) throw new Exception("Read operation not allowed!");
 
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             HttpWebRequest downloadRequest = (HttpWebRequest)WebRequest.Create(readDescription.url);
-            //// We set the parameters as described by the service
-            //downloadRequest.Method = readDescription.httpMethod;
-            //downloadRequest.Timeout = System.Threading.Timeout.Infinite;
-            //downloadRequest.KeepAlive = true;
+            // We set the parameters as described by the service
+            downloadRequest.Method = readDescription.httpMethod;
+            downloadRequest.Timeout = Timeout.Infinite;
+            downloadRequest.KeepAlive = true;
 
             if (readDescription.headers != null)
             {

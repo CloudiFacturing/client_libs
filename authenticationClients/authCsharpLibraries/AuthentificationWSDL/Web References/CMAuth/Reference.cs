@@ -23,7 +23,7 @@ namespace AuthentificationWSDL.CMAuth {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="AuthManagerPortBinding", Namespace="http://authmanager.sintef.no/")]
@@ -31,11 +31,15 @@ namespace AuthentificationWSDL.CMAuth {
         
         private System.Threading.SendOrPostCallback getRolesOperationCompleted;
         
-        private System.Threading.SendOrPostCallback getUsernameOperationCompleted;
-        
         private System.Threading.SendOrPostCallback getEndpointOperationCompleted;
         
         private System.Threading.SendOrPostCallback systemPropTestOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback testDBConnectionOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getTokenInfoOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getTokenInfoCompleteOperationCompleted;
         
         private System.Threading.SendOrPostCallback getSessionTokenOperationCompleted;
         
@@ -44,6 +48,16 @@ namespace AuthentificationWSDL.CMAuth {
         private System.Threading.SendOrPostCallback getProjectOperationCompleted;
         
         private System.Threading.SendOrPostCallback getOpenStackTokenOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getEmailOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback createWorkflowTokenOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback deleteWorkflowTokenOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback countWorkflowsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getUsernameOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -87,13 +101,19 @@ namespace AuthentificationWSDL.CMAuth {
         public event getRolesCompletedEventHandler getRolesCompleted;
         
         /// <remarks/>
-        public event getUsernameCompletedEventHandler getUsernameCompleted;
-        
-        /// <remarks/>
         public event getEndpointCompletedEventHandler getEndpointCompleted;
         
         /// <remarks/>
         public event systemPropTestCompletedEventHandler systemPropTestCompleted;
+        
+        /// <remarks/>
+        public event testDBConnectionCompletedEventHandler testDBConnectionCompleted;
+        
+        /// <remarks/>
+        public event getTokenInfoCompletedEventHandler getTokenInfoCompleted;
+        
+        /// <remarks/>
+        public event getTokenInfoCompleteCompletedEventHandler getTokenInfoCompleteCompleted;
         
         /// <remarks/>
         public event getSessionTokenCompletedEventHandler getSessionTokenCompleted;
@@ -106,6 +126,21 @@ namespace AuthentificationWSDL.CMAuth {
         
         /// <remarks/>
         public event getOpenStackTokenCompletedEventHandler getOpenStackTokenCompleted;
+        
+        /// <remarks/>
+        public event getEmailCompletedEventHandler getEmailCompleted;
+        
+        /// <remarks/>
+        public event createWorkflowTokenCompletedEventHandler createWorkflowTokenCompleted;
+        
+        /// <remarks/>
+        public event deleteWorkflowTokenCompletedEventHandler deleteWorkflowTokenCompleted;
+        
+        /// <remarks/>
+        public event countWorkflowsCompletedEventHandler countWorkflowsCompleted;
+        
+        /// <remarks/>
+        public event getUsernameCompletedEventHandler getUsernameCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://authmanager.sintef.no/", ResponseNamespace="http://authmanager.sintef.no/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -134,36 +169,6 @@ namespace AuthentificationWSDL.CMAuth {
             if ((this.getRolesCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getRolesCompleted(this, new getRolesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://authmanager.sintef.no/", ResponseNamespace="http://authmanager.sintef.no/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string getUsername(string sessionToken) {
-            object[] results = this.Invoke("getUsername", new object[] {
-                        sessionToken});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void getUsernameAsync(string sessionToken) {
-            this.getUsernameAsync(sessionToken, null);
-        }
-        
-        /// <remarks/>
-        public void getUsernameAsync(string sessionToken, object userState) {
-            if ((this.getUsernameOperationCompleted == null)) {
-                this.getUsernameOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetUsernameOperationCompleted);
-            }
-            this.InvokeAsync("getUsername", new object[] {
-                        sessionToken}, this.getUsernameOperationCompleted, userState);
-        }
-        
-        private void OngetUsernameOperationCompleted(object arg) {
-            if ((this.getUsernameCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getUsernameCompleted(this, new getUsernameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -226,6 +231,94 @@ namespace AuthentificationWSDL.CMAuth {
             if ((this.systemPropTestCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.systemPropTestCompleted(this, new systemPropTestCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://authmanager.sintef.no/", ResponseNamespace="http://authmanager.sintef.no/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string testDBConnection() {
+            object[] results = this.Invoke("testDBConnection", new object[0]);
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void testDBConnectionAsync() {
+            this.testDBConnectionAsync(null);
+        }
+        
+        /// <remarks/>
+        public void testDBConnectionAsync(object userState) {
+            if ((this.testDBConnectionOperationCompleted == null)) {
+                this.testDBConnectionOperationCompleted = new System.Threading.SendOrPostCallback(this.OntestDBConnectionOperationCompleted);
+            }
+            this.InvokeAsync("testDBConnection", new object[0], this.testDBConnectionOperationCompleted, userState);
+        }
+        
+        private void OntestDBConnectionOperationCompleted(object arg) {
+            if ((this.testDBConnectionCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.testDBConnectionCompleted(this, new testDBConnectionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://authmanager.sintef.no/", ResponseNamespace="http://authmanager.sintef.no/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public tokenInfo getTokenInfo(string sessionToken) {
+            object[] results = this.Invoke("getTokenInfo", new object[] {
+                        sessionToken});
+            return ((tokenInfo)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getTokenInfoAsync(string sessionToken) {
+            this.getTokenInfoAsync(sessionToken, null);
+        }
+        
+        /// <remarks/>
+        public void getTokenInfoAsync(string sessionToken, object userState) {
+            if ((this.getTokenInfoOperationCompleted == null)) {
+                this.getTokenInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetTokenInfoOperationCompleted);
+            }
+            this.InvokeAsync("getTokenInfo", new object[] {
+                        sessionToken}, this.getTokenInfoOperationCompleted, userState);
+        }
+        
+        private void OngetTokenInfoOperationCompleted(object arg) {
+            if ((this.getTokenInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getTokenInfoCompleted(this, new getTokenInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://authmanager.sintef.no/", ResponseNamespace="http://authmanager.sintef.no/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public tokenInfo getTokenInfoComplete(string sessionToken) {
+            object[] results = this.Invoke("getTokenInfoComplete", new object[] {
+                        sessionToken});
+            return ((tokenInfo)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getTokenInfoCompleteAsync(string sessionToken) {
+            this.getTokenInfoCompleteAsync(sessionToken, null);
+        }
+        
+        /// <remarks/>
+        public void getTokenInfoCompleteAsync(string sessionToken, object userState) {
+            if ((this.getTokenInfoCompleteOperationCompleted == null)) {
+                this.getTokenInfoCompleteOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetTokenInfoCompleteOperationCompleted);
+            }
+            this.InvokeAsync("getTokenInfoComplete", new object[] {
+                        sessionToken}, this.getTokenInfoCompleteOperationCompleted, userState);
+        }
+        
+        private void OngetTokenInfoCompleteOperationCompleted(object arg) {
+            if ((this.getTokenInfoCompleteCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getTokenInfoCompleteCompleted(this, new getTokenInfoCompleteCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -354,6 +447,156 @@ namespace AuthentificationWSDL.CMAuth {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://authmanager.sintef.no/", ResponseNamespace="http://authmanager.sintef.no/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string getEmail(string sessionToken) {
+            object[] results = this.Invoke("getEmail", new object[] {
+                        sessionToken});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getEmailAsync(string sessionToken) {
+            this.getEmailAsync(sessionToken, null);
+        }
+        
+        /// <remarks/>
+        public void getEmailAsync(string sessionToken, object userState) {
+            if ((this.getEmailOperationCompleted == null)) {
+                this.getEmailOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetEmailOperationCompleted);
+            }
+            this.InvokeAsync("getEmail", new object[] {
+                        sessionToken}, this.getEmailOperationCompleted, userState);
+        }
+        
+        private void OngetEmailOperationCompleted(object arg) {
+            if ((this.getEmailCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getEmailCompleted(this, new getEmailCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://authmanager.sintef.no/", ResponseNamespace="http://authmanager.sintef.no/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string createWorkflowToken(string sessionToken, string workflowID) {
+            object[] results = this.Invoke("createWorkflowToken", new object[] {
+                        sessionToken,
+                        workflowID});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void createWorkflowTokenAsync(string sessionToken, string workflowID) {
+            this.createWorkflowTokenAsync(sessionToken, workflowID, null);
+        }
+        
+        /// <remarks/>
+        public void createWorkflowTokenAsync(string sessionToken, string workflowID, object userState) {
+            if ((this.createWorkflowTokenOperationCompleted == null)) {
+                this.createWorkflowTokenOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateWorkflowTokenOperationCompleted);
+            }
+            this.InvokeAsync("createWorkflowToken", new object[] {
+                        sessionToken,
+                        workflowID}, this.createWorkflowTokenOperationCompleted, userState);
+        }
+        
+        private void OncreateWorkflowTokenOperationCompleted(object arg) {
+            if ((this.createWorkflowTokenCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.createWorkflowTokenCompleted(this, new createWorkflowTokenCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://authmanager.sintef.no/", ResponseNamespace="http://authmanager.sintef.no/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool deleteWorkflowToken(string sessionToken) {
+            object[] results = this.Invoke("deleteWorkflowToken", new object[] {
+                        sessionToken});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void deleteWorkflowTokenAsync(string sessionToken) {
+            this.deleteWorkflowTokenAsync(sessionToken, null);
+        }
+        
+        /// <remarks/>
+        public void deleteWorkflowTokenAsync(string sessionToken, object userState) {
+            if ((this.deleteWorkflowTokenOperationCompleted == null)) {
+                this.deleteWorkflowTokenOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteWorkflowTokenOperationCompleted);
+            }
+            this.InvokeAsync("deleteWorkflowToken", new object[] {
+                        sessionToken}, this.deleteWorkflowTokenOperationCompleted, userState);
+        }
+        
+        private void OndeleteWorkflowTokenOperationCompleted(object arg) {
+            if ((this.deleteWorkflowTokenCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.deleteWorkflowTokenCompleted(this, new deleteWorkflowTokenCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://authmanager.sintef.no/", ResponseNamespace="http://authmanager.sintef.no/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int countWorkflows() {
+            object[] results = this.Invoke("countWorkflows", new object[0]);
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void countWorkflowsAsync() {
+            this.countWorkflowsAsync(null);
+        }
+        
+        /// <remarks/>
+        public void countWorkflowsAsync(object userState) {
+            if ((this.countWorkflowsOperationCompleted == null)) {
+                this.countWorkflowsOperationCompleted = new System.Threading.SendOrPostCallback(this.OncountWorkflowsOperationCompleted);
+            }
+            this.InvokeAsync("countWorkflows", new object[0], this.countWorkflowsOperationCompleted, userState);
+        }
+        
+        private void OncountWorkflowsOperationCompleted(object arg) {
+            if ((this.countWorkflowsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.countWorkflowsCompleted(this, new countWorkflowsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://authmanager.sintef.no/", ResponseNamespace="http://authmanager.sintef.no/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string getUsername(string sessionToken) {
+            object[] results = this.Invoke("getUsername", new object[] {
+                        sessionToken});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getUsernameAsync(string sessionToken) {
+            this.getUsernameAsync(sessionToken, null);
+        }
+        
+        /// <remarks/>
+        public void getUsernameAsync(string sessionToken, object userState) {
+            if ((this.getUsernameOperationCompleted == null)) {
+                this.getUsernameOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetUsernameOperationCompleted);
+            }
+            this.InvokeAsync("getUsername", new object[] {
+                        sessionToken}, this.getUsernameOperationCompleted, userState);
+        }
+        
+        private void OngetUsernameOperationCompleted(object arg) {
+            if ((this.getUsernameCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getUsernameCompleted(this, new getUsernameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -373,11 +616,216 @@ namespace AuthentificationWSDL.CMAuth {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://authmanager.sintef.no/")]
+    public partial class tokenInfo {
+        
+        private projectInfo projectField;
+        
+        private roleInfo[] rolesField;
+        
+        private userInfo userField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public projectInfo project {
+            get {
+                return this.projectField;
+            }
+            set {
+                this.projectField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("roles", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public roleInfo[] roles {
+            get {
+                return this.rolesField;
+            }
+            set {
+                this.rolesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public userInfo user {
+            get {
+                return this.userField;
+            }
+            set {
+                this.userField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://authmanager.sintef.no/")]
+    public partial class projectInfo {
+        
+        private string descriptionField;
+        
+        private string idField;
+        
+        private string nameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://authmanager.sintef.no/")]
+    public partial class userInfo {
+        
+        private string descriptionField;
+        
+        private string emailField;
+        
+        private string idField;
+        
+        private string nameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://authmanager.sintef.no/")]
+    public partial class roleInfo {
+        
+        private string descriptionField;
+        
+        private string idField;
+        
+        private string nameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void getRolesCompletedEventHandler(object sender, getRolesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getRolesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -399,37 +847,11 @@ namespace AuthentificationWSDL.CMAuth {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
-    public delegate void getUsernameCompletedEventHandler(object sender, getUsernameCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getUsernameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal getUsernameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void getEndpointCompletedEventHandler(object sender, getEndpointCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getEndpointCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -451,11 +873,11 @@ namespace AuthentificationWSDL.CMAuth {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void systemPropTestCompletedEventHandler(object sender, systemPropTestCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class systemPropTestCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -477,11 +899,89 @@ namespace AuthentificationWSDL.CMAuth {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void testDBConnectionCompletedEventHandler(object sender, testDBConnectionCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class testDBConnectionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal testDBConnectionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void getTokenInfoCompletedEventHandler(object sender, getTokenInfoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getTokenInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getTokenInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public tokenInfo Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((tokenInfo)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void getTokenInfoCompleteCompletedEventHandler(object sender, getTokenInfoCompleteCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getTokenInfoCompleteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getTokenInfoCompleteCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public tokenInfo Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((tokenInfo)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void getSessionTokenCompletedEventHandler(object sender, getSessionTokenCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getSessionTokenCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -503,11 +1003,11 @@ namespace AuthentificationWSDL.CMAuth {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void validateSessionTokenCompletedEventHandler(object sender, validateSessionTokenCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class validateSessionTokenCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -529,11 +1029,11 @@ namespace AuthentificationWSDL.CMAuth {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void getProjectCompletedEventHandler(object sender, getProjectCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getProjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -555,11 +1055,11 @@ namespace AuthentificationWSDL.CMAuth {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void getOpenStackTokenCompletedEventHandler(object sender, getOpenStackTokenCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getOpenStackTokenCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -567,6 +1067,136 @@ namespace AuthentificationWSDL.CMAuth {
         private object[] results;
         
         internal getOpenStackTokenCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void getEmailCompletedEventHandler(object sender, getEmailCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getEmailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getEmailCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void createWorkflowTokenCompletedEventHandler(object sender, createWorkflowTokenCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class createWorkflowTokenCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal createWorkflowTokenCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void deleteWorkflowTokenCompletedEventHandler(object sender, deleteWorkflowTokenCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class deleteWorkflowTokenCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal deleteWorkflowTokenCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void countWorkflowsCompletedEventHandler(object sender, countWorkflowsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class countWorkflowsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal countWorkflowsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void getUsernameCompletedEventHandler(object sender, getUsernameCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getUsernameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getUsernameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

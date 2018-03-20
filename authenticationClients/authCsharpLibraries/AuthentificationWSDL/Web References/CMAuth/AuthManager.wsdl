@@ -2,7 +2,7 @@
 <definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://authmanager.sintef.no/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="AuthManager" targetNamespace="http://authmanager.sintef.no/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <types>
     <xsd:schema>
-      <xsd:import schemaLocation="https://api.caxman.eu:443/sintef/auth/authManager/AuthManager?xsd=1" namespace="http://authmanager.sintef.no/" />
+      <xsd:import schemaLocation="https://caxman.clesgo.net:443/sintef/auth/authManager/AuthManager?xsd=1" namespace="http://authmanager.sintef.no/" />
     </xsd:schema>
   </types>
   <message name="getRoles">
@@ -14,11 +14,8 @@
   <message name="SOAPException">
     <part name="fault" element="tns:SOAPException" />
   </message>
-  <message name="getUsername">
-    <part name="parameters" element="tns:getUsername" />
-  </message>
-  <message name="getUsernameResponse">
-    <part name="parameters" element="tns:getUsernameResponse" />
+  <message name="IOException">
+    <part name="fault" element="tns:IOException" />
   </message>
   <message name="getEndpoint">
     <part name="parameters" element="tns:getEndpoint" />
@@ -31,6 +28,24 @@
   </message>
   <message name="systemPropTestResponse">
     <part name="parameters" element="tns:systemPropTestResponse" />
+  </message>
+  <message name="testDBConnection">
+    <part name="parameters" element="tns:testDBConnection" />
+  </message>
+  <message name="testDBConnectionResponse">
+    <part name="parameters" element="tns:testDBConnectionResponse" />
+  </message>
+  <message name="getTokenInfo">
+    <part name="parameters" element="tns:getTokenInfo" />
+  </message>
+  <message name="getTokenInfoResponse">
+    <part name="parameters" element="tns:getTokenInfoResponse" />
+  </message>
+  <message name="getTokenInfoComplete">
+    <part name="parameters" element="tns:getTokenInfoComplete" />
+  </message>
+  <message name="getTokenInfoCompleteResponse">
+    <part name="parameters" element="tns:getTokenInfoCompleteResponse" />
   </message>
   <message name="getSessionToken">
     <part name="parameters" element="tns:getSessionToken" />
@@ -56,25 +71,68 @@
   <message name="getOpenStackTokenResponse">
     <part name="parameters" element="tns:getOpenStackTokenResponse" />
   </message>
+  <message name="getEmail">
+    <part name="parameters" element="tns:getEmail" />
+  </message>
+  <message name="getEmailResponse">
+    <part name="parameters" element="tns:getEmailResponse" />
+  </message>
+  <message name="createWorkflowToken">
+    <part name="parameters" element="tns:createWorkflowToken" />
+  </message>
+  <message name="createWorkflowTokenResponse">
+    <part name="parameters" element="tns:createWorkflowTokenResponse" />
+  </message>
+  <message name="deleteWorkflowToken">
+    <part name="parameters" element="tns:deleteWorkflowToken" />
+  </message>
+  <message name="deleteWorkflowTokenResponse">
+    <part name="parameters" element="tns:deleteWorkflowTokenResponse" />
+  </message>
+  <message name="countWorkflows">
+    <part name="parameters" element="tns:countWorkflows" />
+  </message>
+  <message name="countWorkflowsResponse">
+    <part name="parameters" element="tns:countWorkflowsResponse" />
+  </message>
+  <message name="getUsername">
+    <part name="parameters" element="tns:getUsername" />
+  </message>
+  <message name="getUsernameResponse">
+    <part name="parameters" element="tns:getUsernameResponse" />
+  </message>
   <portType name="AuthManager">
     <operation name="getRoles">
       <input wsam:Action="http://authmanager.sintef.no/AuthManager/getRolesRequest" message="tns:getRoles" />
       <output wsam:Action="http://authmanager.sintef.no/AuthManager/getRolesResponse" message="tns:getRolesResponse" />
       <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getRoles/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
-    </operation>
-    <operation name="getUsername">
-      <input wsam:Action="http://authmanager.sintef.no/AuthManager/getUsernameRequest" message="tns:getUsername" />
-      <output wsam:Action="http://authmanager.sintef.no/AuthManager/getUsernameResponse" message="tns:getUsernameResponse" />
-      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getUsername/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getRoles/Fault/IOException" name="IOException" message="tns:IOException" />
     </operation>
     <operation name="getEndpoint">
       <input wsam:Action="http://authmanager.sintef.no/AuthManager/getEndpointRequest" message="tns:getEndpoint" />
       <output wsam:Action="http://authmanager.sintef.no/AuthManager/getEndpointResponse" message="tns:getEndpointResponse" />
       <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getEndpoint/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getEndpoint/Fault/IOException" name="IOException" message="tns:IOException" />
     </operation>
     <operation name="systemPropTest">
       <input wsam:Action="http://authmanager.sintef.no/AuthManager/systemPropTestRequest" message="tns:systemPropTest" />
       <output wsam:Action="http://authmanager.sintef.no/AuthManager/systemPropTestResponse" message="tns:systemPropTestResponse" />
+    </operation>
+    <operation name="testDBConnection">
+      <input wsam:Action="http://authmanager.sintef.no/AuthManager/testDBConnectionRequest" message="tns:testDBConnection" />
+      <output wsam:Action="http://authmanager.sintef.no/AuthManager/testDBConnectionResponse" message="tns:testDBConnectionResponse" />
+    </operation>
+    <operation name="getTokenInfo">
+      <input wsam:Action="http://authmanager.sintef.no/AuthManager/getTokenInfoRequest" message="tns:getTokenInfo" />
+      <output wsam:Action="http://authmanager.sintef.no/AuthManager/getTokenInfoResponse" message="tns:getTokenInfoResponse" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getTokenInfo/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getTokenInfo/Fault/IOException" name="IOException" message="tns:IOException" />
+    </operation>
+    <operation name="getTokenInfoComplete">
+      <input wsam:Action="http://authmanager.sintef.no/AuthManager/getTokenInfoCompleteRequest" message="tns:getTokenInfoComplete" />
+      <output wsam:Action="http://authmanager.sintef.no/AuthManager/getTokenInfoCompleteResponse" message="tns:getTokenInfoCompleteResponse" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getTokenInfoComplete/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getTokenInfoComplete/Fault/IOException" name="IOException" message="tns:IOException" />
     </operation>
     <operation name="getSessionToken">
       <input wsam:Action="http://authmanager.sintef.no/AuthManager/getSessionTokenRequest" message="tns:getSessionToken" />
@@ -85,16 +143,47 @@
       <input wsam:Action="http://authmanager.sintef.no/AuthManager/validateSessionTokenRequest" message="tns:validateSessionToken" />
       <output wsam:Action="http://authmanager.sintef.no/AuthManager/validateSessionTokenResponse" message="tns:validateSessionTokenResponse" />
       <fault wsam:Action="http://authmanager.sintef.no/AuthManager/validateSessionToken/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/validateSessionToken/Fault/IOException" name="IOException" message="tns:IOException" />
     </operation>
     <operation name="getProject">
       <input wsam:Action="http://authmanager.sintef.no/AuthManager/getProjectRequest" message="tns:getProject" />
       <output wsam:Action="http://authmanager.sintef.no/AuthManager/getProjectResponse" message="tns:getProjectResponse" />
       <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getProject/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getProject/Fault/IOException" name="IOException" message="tns:IOException" />
     </operation>
     <operation name="getOpenStackToken">
       <input wsam:Action="http://authmanager.sintef.no/AuthManager/getOpenStackTokenRequest" message="tns:getOpenStackToken" />
       <output wsam:Action="http://authmanager.sintef.no/AuthManager/getOpenStackTokenResponse" message="tns:getOpenStackTokenResponse" />
       <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getOpenStackToken/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getOpenStackToken/Fault/IOException" name="IOException" message="tns:IOException" />
+    </operation>
+    <operation name="getEmail">
+      <input wsam:Action="http://authmanager.sintef.no/AuthManager/getEmailRequest" message="tns:getEmail" />
+      <output wsam:Action="http://authmanager.sintef.no/AuthManager/getEmailResponse" message="tns:getEmailResponse" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getEmail/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getEmail/Fault/IOException" name="IOException" message="tns:IOException" />
+    </operation>
+    <operation name="createWorkflowToken">
+      <input wsam:Action="http://authmanager.sintef.no/AuthManager/createWorkflowTokenRequest" message="tns:createWorkflowToken" />
+      <output wsam:Action="http://authmanager.sintef.no/AuthManager/createWorkflowTokenResponse" message="tns:createWorkflowTokenResponse" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/createWorkflowToken/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/createWorkflowToken/Fault/IOException" name="IOException" message="tns:IOException" />
+    </operation>
+    <operation name="deleteWorkflowToken">
+      <input wsam:Action="http://authmanager.sintef.no/AuthManager/deleteWorkflowTokenRequest" message="tns:deleteWorkflowToken" />
+      <output wsam:Action="http://authmanager.sintef.no/AuthManager/deleteWorkflowTokenResponse" message="tns:deleteWorkflowTokenResponse" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/deleteWorkflowToken/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
+    </operation>
+    <operation name="countWorkflows">
+      <input wsam:Action="http://authmanager.sintef.no/AuthManager/countWorkflowsRequest" message="tns:countWorkflows" />
+      <output wsam:Action="http://authmanager.sintef.no/AuthManager/countWorkflowsResponse" message="tns:countWorkflowsResponse" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/countWorkflows/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
+    </operation>
+    <operation name="getUsername">
+      <input wsam:Action="http://authmanager.sintef.no/AuthManager/getUsernameRequest" message="tns:getUsername" />
+      <output wsam:Action="http://authmanager.sintef.no/AuthManager/getUsernameResponse" message="tns:getUsernameResponse" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getUsername/Fault/SOAPException" name="SOAPException" message="tns:SOAPException" />
+      <fault wsam:Action="http://authmanager.sintef.no/AuthManager/getUsername/Fault/IOException" name="IOException" message="tns:IOException" />
     </operation>
   </portType>
   <binding name="AuthManagerPortBinding" type="tns:AuthManager">
@@ -110,17 +199,8 @@
       <fault name="SOAPException">
         <soap:fault use="literal" name="SOAPException" namespace="" />
       </fault>
-    </operation>
-    <operation name="getUsername">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-      <fault name="SOAPException">
-        <soap:fault use="literal" name="SOAPException" namespace="" />
+      <fault name="IOException">
+        <soap:fault use="literal" name="IOException" namespace="" />
       </fault>
     </operation>
     <operation name="getEndpoint">
@@ -134,6 +214,9 @@
       <fault name="SOAPException">
         <soap:fault use="literal" name="SOAPException" namespace="" />
       </fault>
+      <fault name="IOException">
+        <soap:fault use="literal" name="IOException" namespace="" />
+      </fault>
     </operation>
     <operation name="systemPropTest">
       <soap:operation soapAction="" />
@@ -143,6 +226,45 @@
       <output>
         <soap:body use="literal" />
       </output>
+    </operation>
+    <operation name="testDBConnection">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getTokenInfo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="SOAPException">
+        <soap:fault use="literal" name="SOAPException" namespace="" />
+      </fault>
+      <fault name="IOException">
+        <soap:fault use="literal" name="IOException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getTokenInfoComplete">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="SOAPException">
+        <soap:fault use="literal" name="SOAPException" namespace="" />
+      </fault>
+      <fault name="IOException">
+        <soap:fault use="literal" name="IOException" namespace="" />
+      </fault>
     </operation>
     <operation name="getSessionToken">
       <soap:operation soapAction="" />
@@ -167,6 +289,9 @@
       <fault name="SOAPException">
         <soap:fault use="literal" name="SOAPException" namespace="" />
       </fault>
+      <fault name="IOException">
+        <soap:fault use="literal" name="IOException" namespace="" />
+      </fault>
     </operation>
     <operation name="getProject">
       <soap:operation soapAction="" />
@@ -178,6 +303,9 @@
       </output>
       <fault name="SOAPException">
         <soap:fault use="literal" name="SOAPException" namespace="" />
+      </fault>
+      <fault name="IOException">
+        <soap:fault use="literal" name="IOException" namespace="" />
       </fault>
     </operation>
     <operation name="getOpenStackToken">
@@ -191,11 +319,83 @@
       <fault name="SOAPException">
         <soap:fault use="literal" name="SOAPException" namespace="" />
       </fault>
+      <fault name="IOException">
+        <soap:fault use="literal" name="IOException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getEmail">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="SOAPException">
+        <soap:fault use="literal" name="SOAPException" namespace="" />
+      </fault>
+      <fault name="IOException">
+        <soap:fault use="literal" name="IOException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="createWorkflowToken">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="SOAPException">
+        <soap:fault use="literal" name="SOAPException" namespace="" />
+      </fault>
+      <fault name="IOException">
+        <soap:fault use="literal" name="IOException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="deleteWorkflowToken">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="SOAPException">
+        <soap:fault use="literal" name="SOAPException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="countWorkflows">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="SOAPException">
+        <soap:fault use="literal" name="SOAPException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getUsername">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="SOAPException">
+        <soap:fault use="literal" name="SOAPException" namespace="" />
+      </fault>
+      <fault name="IOException">
+        <soap:fault use="literal" name="IOException" namespace="" />
+      </fault>
     </operation>
   </binding>
   <service name="AuthManager">
     <port name="AuthManagerPort" binding="tns:AuthManagerPortBinding">
-      <soap:address location="https://api.caxman.eu:443/sintef/auth/authManager/AuthManager" />
+      <soap:address location="https://caxman.clesgo.net:443/sintef/auth/authManager/AuthManager" />
     </port>
   </service>
 </definitions>

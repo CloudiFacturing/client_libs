@@ -117,7 +117,7 @@ namespace AuthentificationWSDL.CMAuth
 
             this.TokenId = tokenId;
 
-            this.Username = this.client.getUsername(this.TokenId);
+            if(this.IsValid) this.Username = this.client.getUsername(this.TokenId);
         }
 
         /// <summary>

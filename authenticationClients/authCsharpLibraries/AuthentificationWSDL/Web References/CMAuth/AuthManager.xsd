@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://authmanager.sintef.no/" targetNamespace="http://authmanager.sintef.no/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="IOException" type="tns:IOException" />
   <xs:element name="SOAPException" type="tns:SOAPException" />
+  <xs:element name="countWorkflows" type="tns:countWorkflows" />
+  <xs:element name="countWorkflowsResponse" type="tns:countWorkflowsResponse" />
+  <xs:element name="createWorkflowToken" type="tns:createWorkflowToken" />
+  <xs:element name="createWorkflowTokenResponse" type="tns:createWorkflowTokenResponse" />
+  <xs:element name="deleteWorkflowToken" type="tns:deleteWorkflowToken" />
+  <xs:element name="deleteWorkflowTokenResponse" type="tns:deleteWorkflowTokenResponse" />
+  <xs:element name="getEmail" type="tns:getEmail" />
+  <xs:element name="getEmailResponse" type="tns:getEmailResponse" />
   <xs:element name="getEndpoint" type="tns:getEndpoint" />
   <xs:element name="getEndpointResponse" type="tns:getEndpointResponse" />
   <xs:element name="getOpenStackToken" type="tns:getOpenStackToken" />
@@ -11,46 +20,31 @@
   <xs:element name="getRolesResponse" type="tns:getRolesResponse" />
   <xs:element name="getSessionToken" type="tns:getSessionToken" />
   <xs:element name="getSessionTokenResponse" type="tns:getSessionTokenResponse" />
+  <xs:element name="getTokenInfo" type="tns:getTokenInfo" />
+  <xs:element name="getTokenInfoComplete" type="tns:getTokenInfoComplete" />
+  <xs:element name="getTokenInfoCompleteResponse" type="tns:getTokenInfoCompleteResponse" />
+  <xs:element name="getTokenInfoResponse" type="tns:getTokenInfoResponse" />
   <xs:element name="getUsername" type="tns:getUsername" />
   <xs:element name="getUsernameResponse" type="tns:getUsernameResponse" />
   <xs:element name="systemPropTest" type="tns:systemPropTest" />
   <xs:element name="systemPropTestResponse" type="tns:systemPropTestResponse" />
+  <xs:element name="testDBConnection" type="tns:testDBConnection" />
+  <xs:element name="testDBConnectionResponse" type="tns:testDBConnectionResponse" />
   <xs:element name="validateSessionToken" type="tns:validateSessionToken" />
   <xs:element name="validateSessionTokenResponse" type="tns:validateSessionTokenResponse" />
-  <xs:complexType name="getEndpoint">
+  <xs:complexType name="deleteWorkflowToken">
     <xs:sequence>
       <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
-      <xs:element minOccurs="0" form="qualified" name="component" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="getEndpointResponse">
+  <xs:complexType name="deleteWorkflowTokenResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:string" />
+      <xs:element name="return" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="SOAPException">
     <xs:sequence>
       <xs:element minOccurs="0" name="message" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="getProject">
-    <xs:sequence>
-      <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="getProjectResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="getRoles">
-    <xs:sequence>
-      <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="getRolesResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getUsername">
@@ -63,12 +57,77 @@
       <xs:element minOccurs="0" name="return" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="systemPropTest">
+  <xs:complexType name="IOException">
     <xs:sequence>
-      <xs:element minOccurs="0" form="qualified" name="input" type="xs:string" />
+      <xs:element minOccurs="0" name="message" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="systemPropTestResponse">
+  <xs:complexType name="createWorkflowToken">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
+      <xs:element minOccurs="0" form="qualified" name="workflowID" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createWorkflowTokenResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getOpenStackToken">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getOpenStackTokenResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTokenInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTokenInfoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:tokenInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tokenInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="project" type="tns:projectInfo" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="roles" nillable="true" type="tns:roleInfo" />
+      <xs:element minOccurs="0" name="user" type="tns:userInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="projectInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="roleInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="userInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="xs:string" />
+      <xs:element minOccurs="0" name="email" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getProject">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getProjectResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:string" />
     </xs:sequence>
@@ -83,12 +142,61 @@
       <xs:element name="return" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="getOpenStackToken">
+  <xs:complexType name="countWorkflows">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="countWorkflowsResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTokenInfoComplete">
     <xs:sequence>
       <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="getOpenStackTokenResponse">
+  <xs:complexType name="getTokenInfoCompleteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:tokenInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getEndpoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
+      <xs:element minOccurs="0" form="qualified" name="component" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getEndpointResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="systemPropTest">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="input" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="systemPropTestResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRoles">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRolesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getEmail">
+    <xs:sequence>
+      <xs:element minOccurs="0" form="qualified" name="sessionToken" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getEmailResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:string" />
     </xs:sequence>
@@ -101,6 +209,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="getSessionTokenResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="testDBConnection">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="testDBConnectionResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="xs:string" />
     </xs:sequence>

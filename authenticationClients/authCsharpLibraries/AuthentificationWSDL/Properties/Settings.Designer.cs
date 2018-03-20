@@ -26,7 +26,7 @@ namespace AuthentificationWSDL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://api.caxman.eu:443/sintef/auth/authManager/AuthManager")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://caxman.clesgo.net:443/sintef/auth/authManager/AuthManager")]
         public string AuthentificationWSDL_CMAuth_AuthManager {
             get {
                 return ((string)(this["AuthentificationWSDL_CMAuth_AuthManager"]));
