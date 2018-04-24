@@ -1,0 +1,3 @@
+[submodule "genericClients/cfpy"]
+	path = genericClients/cfpy
+	url = git@github.com:CloudiFacturing/cfpy.git
