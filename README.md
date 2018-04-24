@@ -6,6 +6,16 @@ Everyone is welcome to contribute to this repository by implementing client
 libraries in languages which are not available yet. If you do so, please develop
 in a separate branch and create pull requests when ready.
 
+_Note:_ Some libraries are included as git _submodules_. To clone the repository
+including all submodules, run
+```
+git clone --recursive <project url>
+```
+To update all submodules (after initial cloning), run
+```
+git submodule update --recursive
+```
+
 ## Available libraries
 ### Generic libraries
 * [genericClients/cfpy](genericClients/cfpy): Python package with leightweight
