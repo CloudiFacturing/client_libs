@@ -1,3 +1,5 @@
+**DEPRECATED!** This library collection is currently not maintained and therefore does not reflect or support the current state of the SemWES platform. It is therefore **not** recommended to any of the libraries in this repository. Use [clfpy](https://github.com/CloudiFacturing/clfpy) instead.
+
 # CloudFlow client libraries
 This repository provides client libraries for various infrastructure
 components of the CloudFlow platform.
